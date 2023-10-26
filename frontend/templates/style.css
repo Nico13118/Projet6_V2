@@ -1,0 +1,110 @@
+/* Fond d'écran
+class = .logo
+id = #wallPaper
+code couleur du logo = #082BF1
+*/
+
+#wallPaper{
+    background-image: url("dark_wallpaper.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.logo{
+    width: 154px;
+    height: 97px;
+    background-image: url("newlogo.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.top_headband{
+    display: flex;
+    align-items: center;
+
+}
+
+.logo_area{
+    width: 154px;
+    height: 97px;
+    margin-right: 100px;
+
+}
+
+.menu_area{
+    width: 1200px;
+    height: 97px;
+    display: flex;
+    align-items: flex-end;
+    border: 2px solid #1C1E20;
+}
+.search_area{
+    width: 800px;
+    height: 97px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: 2px solid #1C1E20;
+}
+
+.notification_area{
+    width: 200px;
+    height: 97px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: 2px solid #1C1E20;
+}
+
+.profile_area{
+    width: 200px;
+    height: 97px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: 2px solid #1C1E20;
+}
+
+.menu_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 25px;
+    color: #FFFFFF;
+    margin-right: 40px;
+    margin-bottom: 3px;
+    text-decoration: none;
+}
+
+.search_icon{
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("loupe.png");
+
+}
+
+.profil{
+    width: 70px;
+    height: 70px;
+    margin-right: 50px;
+    background-image: url("newprofil.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-bottom: 3px;
+
+
+}
+.notification{
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("new_cloche_notification.png");
+    margin-right: 20px;
+    margin-bottom: 3px;
+
+}
