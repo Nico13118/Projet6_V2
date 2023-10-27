@@ -2,6 +2,11 @@
 class = .logo
 id = #wallPaper
 code couleur du logo = #082BF1
+code couleur du fond d'écran = #000000
+
+input[type="search" i]::-webkit-color-swatch {
+    border-style: none !important;
+}
 */
 
 #wallPaper{
@@ -9,6 +14,26 @@ code couleur du logo = #082BF1
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+}
+
+label,
+legend{
+    display: none;
+}
+
+.top_headband{
+    display: flex;
+    align-items: center;
+
+}
+
+/* Zone du logo */
+.logo_area{
+    width: 154px;
+    height: 97px;
+    margin-right: 100px;
+/*    border: 2px solid #FFFFFF; */
+
 }
 
 .logo{
@@ -19,53 +44,97 @@ code couleur du logo = #082BF1
     background-repeat: no-repeat;
 }
 
-.top_headband{
-    display: flex;
-    align-items: center;
-
-}
-
-.logo_area{
-    width: 154px;
+/* Zone de recherche */
+fieldset{
+    border: 1px transparent;
     height: 97px;
-    margin-right: 100px;
-
-}
-
-.menu_area{
-    width: 1200px;
-    height: 97px;
-    display: flex;
-    align-items: flex-end;
-    border: 2px solid #1C1E20;
+   /* border: 2px solid #FFFFFF;*/
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 .search_area{
-    width: 800px;
-    height: 97px;
+    width: 300px;
+    height: 40px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    border: 2px solid #1C1E20;
+    border: 2px solid #FFFFFF;
+    margin-top: 47px;
+
 }
 
+.search_icon{
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("loupe.png");
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background: none;
+    border: 1px transparent;
+}
+
+.search_rectangle{
+    width: 300px;
+    height: 40px;
+    display: flex;
+    border: 0.5px solid #FFFFFF;
+    background: #000000;
+    margin-right: -1px;
+    color: #FFFFFF;
+}
+
+/* Zone notification */
 .notification_area{
     width: 200px;
     height: 97px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    border: 2px solid #1C1E20;
+    /*border: 2px solid #FFFFFF;*/
 }
 
+.notification{
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("new_cloche_notification.png");
+    margin-right: 20px;
+    margin-bottom: 3px;
+
+}
+
+/* Zone profil */
 .profile_area{
     width: 200px;
     height: 97px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    border: 2px solid #1C1E20;
+}
+.profile{
+    width: 70px;
+    height: 70px;
+    margin-right: 50px;
+    background-image: url("newprofil.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-bottom: 3px;
 }
 
+/* Zone du menu */
+
+.menu_area{
+    width: 1200px;
+    height: 97px;
+    display: flex;
+    align-items: flex-end;
+    /*border: 2px solid #FFFFFF;*/
+}
 .menu_button{
     display: flex;
     align-items: center;
@@ -78,33 +147,3 @@ code couleur du logo = #082BF1
     text-decoration: none;
 }
 
-.search_icon{
-    width: 30px;
-    height: 30px;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-image: url("loupe.png");
-
-}
-
-.profil{
-    width: 70px;
-    height: 70px;
-    margin-right: 50px;
-    background-image: url("newprofil.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    margin-bottom: 3px;
-
-
-}
-.notification{
-    width: 40px;
-    height: 40px;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-image: url("new_cloche_notification.png");
-    margin-right: 20px;
-    margin-bottom: 3px;
-
-}
