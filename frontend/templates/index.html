@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="fr">
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,14 +22,19 @@
         <a href="" class="menu_button" title="Ajouts récents">Ajouts récents</a>
         <a href="" class="menu_button" title="Ma liste">Ma liste</a>
     </nav>
+    <fieldset>
+        <legend>Moteur de recherche</legend>
+        <div class="search_area">
+            <label for="search_movie">Rechercher</label>
+            <input type="search" name="search_movie" maxlength="50" class="search_rectangle" required id="search_movie">
+            <button type="submit">
+                <svg class="search_icon">
+                    <use href=""></use>
+                </svg>
+            </button>
+        </div>
+    </fieldset>
 
-    <div class="search_area">
-        <a href="" class="search_icon" title="Rechercher">
-            <svg class="search_icon">
-                <use href=""></use>
-            </svg>
-        </a>
-    </div>
 
     <div class="notification_area">
         <a href="" class="notification" title="Notification">
@@ -37,8 +42,8 @@
         </a>
     </div>
     <div class="profile_area">
-        <a href="" class="profil" title="Profil">
-            <svg class="profil"></svg>
+        <a href="" class="profile" title="Profile">
+            <svg class="profile"></svg>
         </a>
     </div>
 
