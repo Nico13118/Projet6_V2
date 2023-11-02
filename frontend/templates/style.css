@@ -3,7 +3,7 @@ class = .logo
 id = #wallPaper
 code couleur du logo = #082BF1
 code couleur du fond d'écran = #000000
-
+border: 2px solid #FFFFFF;
 input[type="search" i]::-webkit-color-swatch {
     border-style: none !important;
 }
@@ -147,3 +147,83 @@ button[type="submit"] {
     text-decoration: none;
 }
 
+/* Zone meilleur film*/
+
+#filmNumber1Area{
+/*    position: relative; */
+    display: flex;
+    justify-content: center;
+}
+.single_image {
+    width: auto;
+    height: 800px;
+    background-size: 100% 100%;
+
+}
+
+.film_title {
+    position: absolute;
+    margin-top: 400px;
+    margin-left: 25px;
+    font-size: 50px;
+    color: #FFFFFF;
+}
+
+.description {
+    position: absolute;
+    width: 300px;
+    margin-left: 25px;
+    margin-top: 500px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+/* Liste de film première catégorie*/
+.categorie1 {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+
+#filmDetails {
+    display: flex;
+    width: auto;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 20px;
+
+}
+
+/* Titre de la page */
+.page_title {
+    display: flex;
+    font-size: 30px;
+    color: #082BF1;
+    margin-left: 20px;
+}
+
+/*
+    width: 70%;
+    height: auto;
+    margin-right: 20px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;*/
+/*    font-size: 25px;*/
+/*    color: #FFFFFF;*/
+/*    margin-right: 20px;*/
+/*    margin-left: 20px;*/
+/*    border: 2px solid #FFFFFF;*/
+/*    align-items: flex-end; */
+/*    justify-content: flex-end;*/
+
+/*
+#bestFilm {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    height: auto;
+    border: 2px solid #FFFFFF;
+    justify-content: flex-end;
+    /*align-items: flex-end;
+}
+*/
