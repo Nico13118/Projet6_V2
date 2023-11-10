@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let bestImage = "https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/6116cc072824771992111acec7ba236e177d3e1975b87fa574dffb64f49a5b94._RI_TTW_SX720_FMjpg_.jpg";
                 movieInfo.innerHTML = `
                     <div class=rectangle1>
+                        <h1 class="page_title">Meilleur Film</h1>
                         <h2 class="movie_title">${selectMovie.title}</h2>
                         <p class="description">${movie.description}</p>
                         <a href="javascript:void(0);">
