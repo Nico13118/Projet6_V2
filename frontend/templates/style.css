@@ -127,7 +127,6 @@ button[type="submit"] {
 }
 
 /* Zone du menu */
-
 .menu_area{
     width: 1200px;
     height: 97px;
@@ -148,20 +147,20 @@ button[type="submit"] {
 }
 
 /* Zone meilleur film*/
-
-#filmNumber1Area{
-/*    position: relative; */
+#movieNumber1Area{
+    position: relative;
     display: flex;
     justify-content: center;
 }
+
 .single_image {
-    width: auto;
-    height: 800px;
+    width: 1500px;
+    height: auto;
     background-size: 100% 100%;
 
 }
 
-.film_title {
+.movie_title {
     position: absolute;
     margin-top: 400px;
     margin-left: 25px;
@@ -169,23 +168,24 @@ button[type="submit"] {
     color: #FFFFFF;
 }
 
+
 .description {
     position: absolute;
     width: 300px;
     margin-left: 25px;
     margin-top: 500px;
-    font-size: 20px;
+    font-size: 25px;
     color: #FFFFFF;
 }
 
 /* Liste de film première catégorie*/
-.categorie1 {
+.category1 {
     display: flex;
     margin-right: 20px;
     align-items: center;
 }
 
-#filmDetails {
+#moviesDetails1 {
     display: flex;
     width: auto;
     height: auto;
@@ -199,31 +199,195 @@ button[type="submit"] {
     display: flex;
     font-size: 30px;
     color: #082BF1;
-    margin-left: 20px;
+    margin-left: 210px;
+    margin-bottom: 0px;
 }
 
-/*
-    width: 70%;
-    height: auto;
-    margin-right: 20px;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;*/
-/*    font-size: 25px;*/
-/*    color: #FFFFFF;*/
-/*    margin-right: 20px;*/
-/*    margin-left: 20px;*/
-/*    border: 2px solid #FFFFFF;*/
-/*    align-items: flex-end; */
-/*    justify-content: flex-end;*/
-
-/*
-#bestFilm {
-    margin-top: 20px;
+/* Liste de film catégorie2*/
+.movie_category2_area {
     display: flex;
-    width: 100%;
-    height: auto;
-    border: 2px solid #FFFFFF;
-    justify-content: flex-end;
-    /*align-items: flex-end;
+    align-items: center;
+
 }
-*/
+
+.category2 {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+
+#moviesDetails2 {
+    display: flex;
+    width: auto;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 20px;
+
+}
+
+#buttonAreaLeft {
+    display: flex;
+    width: 35px;
+    height: auto;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px transparent;
+}
+
+#buttonAreaRight {
+    display: flex;
+    width: 35px;
+    height: auto;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px transparent;
+
+}
+
+.button_left {
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+    background-image: url("nav_button.png");
+
+}
+
+.button_right {
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("nav_button.png");
+
+}
+
+/*  Zone boite de dialogue */
+
+.modal {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+    left: 6px;
+    top: -154px;
+    bottom: 0%;
+    /*width: auto;
+    height: auto;*/
+
+}
+
+.movie_title2 {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 50px;
+    font-size: 50px;
+    color: #FFFFFF;
+}
+
+.description2 {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-left: 10px;
+    margin-top: auto;
+    font-size: 25px;
+    color: #FFFFFF;
+}
+.modal-content {
+    position: absolute;
+    border: 1px solid #FFFFFF;
+    display: flex;
+    background-color: transparent;
+    margin: auto;
+    padding: 4px;
+    border-radius: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    right: 5px;
+    margin-top: 10px;
+    margin-right: 5px;
+    max-width: 80%;
+}
+
+.worldwide_gross_income,
+.usa_gross_income,
+.countries,
+.actors,
+.directors,
+.genres,
+.rated,
+.date_published,
+.duration,
+.imdb_score {
+    display: flex;
+    margin-left: 10px;
+    margin: auto;
+    margin-top: 4px;
+    margin-left: 10px;
+    font-size: 25px;
+    color: #FFFFFF;
+}
+
+.close {
+    z-index: 1;
+    color: #FFFFFF;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.modal-content:hover{
+    border: 1px solid #082BF1;
+
+}
+
+.close:hover {
+  color: #082BF1;
+}
+
+.container1 {
+    position: relative;
+    background-color: #000000;
+    display: grid;
+    grid-template-areas: "R1 R2";
+    width: auto;
+    height: auto;
+    margin-right: 240px;
+    top: 248px;
+    left: 54px;
+    border: 2px solid #FFFFFF;
+}
+
+.R1,
+.R2,
+.R3,
+.R4,
+.R5
+.R6,
+.R7 {
+    width: auto;
+    height: auto;
+}
+
+.single_image2 {
+    width: auto;
+    height: 500px;
+    background-size: 100% 100%;
+}
+
+.R2 {
+    display: grid;
+    grid-template-areas:
+    "R3"
+    "R4"
+    "R5"
+    "R6"
+    "R7";
+}
+
+
