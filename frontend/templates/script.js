@@ -34,81 +34,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showMovie(urlSingleMovie) {
     let modal = document.getElementById("myModal");
-    if (modal.style.display === 'none') {
-        modal.style.display = "block";
-    }
-    else {
-        fetch(urlSingleMovie)
-        .then(response => response.json())
-        .then( movie => {
-            let movieInfo = document.createElement('div');
-                movieInfo.innerHTML = `
-                <div class="container1">
 
-                    <div class="R1">
-                        <img class="single_image2" src="${movie.image_url}" alt="${movie.title}">
-                    </div>
+    fetch(urlSingleMovie)
+    .then(response => response.json())
+    .then( movie => {
+        let movieInfo = document.createElement('div');
+            movieInfo.innerHTML = `
+            <div class="container1">
 
-                    <div class="R2">
-                        <div class="modal-content R3">
-                            <span class="close" id="closeModal" onclick="closeBtn()">&times;</span> <!-- Bouton de fermeture -->
-                        </div>
-
-                        <div class="R4">
-                            <h1 class="movie_title2">${movie.original_title}</h1>
-                            <p class="description2">${movie.long_description}</p>
-                        </div>
-
-                        <div class="R5">
-                            <div class="imdb_score">
-                                <span>IMDb ${movie.imdb_score}</span>
-                            </div>
-                            <div class="duration">
-                                <span>Durée ${movie.duration}</span>
-                            </div>
-                            <div class="date_published">
-                                <span>Date de sortie ${movie.date_published}</span>
-                            </div>
-                            <div class="rated">
-                                <span>Notation du contenu ${movie.rated}</span>
-                            </div>
-                            <div class="genres">
-                                <span>Genres ${movie.genres}</span>
-                            </div>
-                        </div>
-
-                        <div class="R6">
-                            <div class="directors">
-                                <span>Réalisateur ${movie.directors}</span>
-                            </div>
-                            <div class="actors">
-                                <span>Liste des acteurs ${movie.actors}</span>
-                            </div>
-                        </div>
-
-                        <div class="R7">
-                            <div class="countries">
-                                <span>Pays ${movie.countries}</span>
-                            </div>
-                            <div class="usa_gross_income">
-                                <span>Box office USA ${movie.usa_gross_income}</span>
-                            </div>
-                            <div class="worldwide_gross_income">
-                                <span>Box office mondial ${movie.worldwide_gross_income}</span>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="R1">
+                    <img class="single_image2" src="${movie.image_url}" alt="${movie.title}">
                 </div>
-            `;
-            modal.appendChild(movieInfo)
-        });
-    }
+
+                <div class="R2">
+                    <div class="modal-content R3">
+                        <span class="close" id="closeModal" onclick="closeBtn()">&times;</span> <!-- Bouton de fermeture -->
+                    </div>
+
+                    <div class="R4">
+                        <h1 class="movie_title2">${movie.original_title}</h1>
+                        <p class="description2">${movie.long_description}</p>
+                    </div>
+
+                    <div class="R5">
+                        <div class="imdb_score">
+                            <span>IMDb ${movie.imdb_score}</span>
+                        </div>
+                        <div class="duration">
+                            <span>Durée ${movie.duration}</span>
+                        </div>
+                        <div class="date_published">
+                            <span>Date de sortie ${movie.date_published}</span>
+                        </div>
+                        <div class="rated">
+                            <span>Notation du contenu ${movie.rated}</span>
+                        </div>
+                        <div class="genres">
+                            <span>Genres ${movie.genres}</span>
+                        </div>
+                    </div>
+
+                    <div class="R6">
+                        <div class="directors">
+                            <span>Réalisateur ${movie.directors}</span>
+                        </div>
+                        <div class="actors">
+                            <span>Liste des acteurs ${movie.actors}</span>
+                        </div>
+                    </div>
+
+                    <div class="R7">
+                        <div class="countries">
+                            <span>Pays ${movie.countries}</span>
+                        </div>
+                        <div class="usa_gross_income">
+                            <span>Box office USA ${movie.usa_gross_income}</span>
+                        </div>
+                        <div class="worldwide_gross_income">
+                            <span>Box office mondial ${movie.worldwide_gross_income}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        `;
+        modal.appendChild(movieInfo)
+    });
+
 }
 
 function closeBtn() {
   let modal = document.getElementById("myModal");
-  modal.style.display = "none";
+    let deleteDiv = modal.querySelectorAll("div")
+    deleteDiv.forEach(div => {
+        div.remove();
+
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
