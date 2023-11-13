@@ -148,9 +148,14 @@ button[type="submit"] {
 
 /* Zone meilleur film*/
 #movieNumber1Area{
-    position: relative;
+/*    position: relative; */
     display: flex;
     justify-content: center;
+}
+
+.rectangle1 {
+    height: 920px;
+
 }
 
 .single_image {
@@ -161,8 +166,9 @@ button[type="submit"] {
 }
 
 .movie_title {
-    position: absolute;
-    margin-top: 400px;
+    position: relative;
+    bottom: 660px;
+    margin-top: auto;
     margin-left: 25px;
     font-size: 50px;
     color: #FFFFFF;
@@ -170,15 +176,18 @@ button[type="submit"] {
 
 
 .description {
-    position: absolute;
-    width: 300px;
+    position: relative;
+    bottom: 690px;
+    width: 500px;
+    height: auto;
     margin-left: 25px;
-    margin-top: 500px;
+    margin-top: auto;
     font-size: 25px;
     color: #FFFFFF;
 }
 
 /* Liste de film première catégorie*/
+/*
 .category1 {
     display: flex;
     margin-right: 20px;
@@ -192,9 +201,9 @@ button[type="submit"] {
     margin-top: 20px;
     margin-left: 20px;
 
-}
+}*/
 
-/* Titre de la page */
+/* Titre de la page Meilleur film */
 .page_title {
     display: flex;
     font-size: 30px;
@@ -203,19 +212,27 @@ button[type="submit"] {
 }
 
 /* Liste de film catégorie2*/
-.movie_category2_area {
+.movie_category1_area,
+.movie_category2_area,
+.movie_category3_area,
+.movie_category4_area {
     display: flex;
     align-items: center;
-
 }
 
-.category2 {
+.category1,
+.category2,
+.category3,
+.category4 {
     display: flex;
     margin-right: 20px;
     align-items: center;
 }
 
-#moviesDetails2 {
+#moviesDetails1,
+#moviesDetails2,
+#moviesDetails3,
+#moviesDetails4 {
     display: flex;
     width: auto;
     height: auto;
@@ -390,3 +407,36 @@ button[type="submit"] {
 }
 
 
+/* Bouton plus d'informations */
+.moreInformation {
+    cursor: pointer;
+    bottom: 650px;
+    padding: 15px;
+    border-radius: 40px;
+    left: 25px;
+    margin-right: 20px;
+    position: relative;
+    font-size: 25px;
+    background-color: #FFFFFF;
+
+
+}
+
+/* Bouton Play */
+.playMovie {
+    cursor: pointer;
+    bottom: 650px;
+    padding: 15px;
+    border-radius: 40px;
+    left: 25px;
+    position: relative;
+    font-size: 25px;
+    background-color: #FFFFFF;
+
+}
+
+.playMovie:hover,
+.moreInformation:hover {
+    border: 1px solid #082BF1;
+    background-color: #082BF1;
+}
