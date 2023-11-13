@@ -51,7 +51,7 @@ function showMovie(urlSingleMovie) {
 
                 <div class="R2">
                     <div class="modal-content R3">
-                        <span class="close" id="closeModal" onclick="closeBtn()">&times;</span> <!-- Bouton de fermeture -->
+                        <span class="close" id="closeModal" onclick="closeBtn()">&times;</span>
                     </div>
 
                     <div class="R4">
@@ -128,7 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pour chaque film, un élément est créer pour affichez l'image'
                 let movieInfo1 = document.createElement('div');
                 movieInfo1.innerHTML = `
-                    <img class="category1" src="${movie1.image_url}" alt="${movie1.title}">
+                    <a href="javascript:void(0);">
+                    <img class="category1" src="${movie1.image_url}" alt="${movie1.title}" onclick="showMovie('${movie1.url}')">
+                    </a>
                 `;
                 moviesDetails1.appendChild(movieInfo1);
             });
@@ -148,7 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
             movies2.forEach(movie2 => {
                 let movieInfo2 = document.createElement('div');
                 movieInfo2.innerHTML = `
-                    <img class="category2" src="${movie2.image_url}" alt="${movie2.title}">
+                    <a href="javascript:void(0);">
+                    <img class="category2" src="${movie2.image_url}" alt="${movie2.title}" onclick="showMovie('${movie2.url}')">
+                    </a>
                 `;
                 moviesDetails2.appendChild(movieInfo2)
             });
@@ -168,7 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pour chaque film, un élément est créer pour affichez l'image'
                 let movieInfo3 = document.createElement('div');
                 movieInfo3.innerHTML = `
-                    <img class="category3" src="${movie3.image_url}" alt="${movie3.title}">
+                    <a href="javascript:void(0);">
+                    <img class="category3" src="${movie3.image_url}" alt="${movie3.title}" onclick="showMovie('${movie3.url}')">
+                    </a>
                 `;
                 moviesDetails3.appendChild(movieInfo3);
             });
@@ -189,7 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
             movies4.forEach(movie4 => {
                 let movieInfo4 = document.createElement('div');
                 movieInfo4.innerHTML = `
-                    <img class="category4" src="${movie4.image_url}" alt="${movie4.title}">
+                    <a href="javascript:void(0);">
+                    <img class="category4" src="${movie4.image_url}" alt="${movie4.title}" onclick="showMovie('${movie4.url}')">
+                    </a>
                 `;
                 moviesDetails4.appendChild(movieInfo4)
             });
