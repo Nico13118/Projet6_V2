@@ -186,23 +186,6 @@ button[type="submit"] {
     color: #FFFFFF;
 }
 
-/* Liste de film première catégorie*/
-/*
-.category1 {
-    display: flex;
-    margin-right: 20px;
-    align-items: center;
-}
-
-#moviesDetails1 {
-    display: flex;
-    width: auto;
-    height: auto;
-    margin-top: 20px;
-    margin-left: 20px;
-
-}*/
-
 /* Titre de la page Meilleur film */
 .page_title {
     display: flex;
@@ -283,15 +266,8 @@ button[type="submit"] {
 
 .modal {
     position: absolute;
-    display: flex;
-    justify-content: center;
-    z-index: 3;
-    left: 6px;
-    top: -154px;
-    bottom: 0%;
-    /*width: auto;
-    height: auto;*/
-
+    z-index: 5;
+    width: 1370px;
 }
 
 .movie_title2 {
@@ -371,11 +347,6 @@ button[type="submit"] {
     background-color: #000000;
     display: grid;
     grid-template-areas: "R1 R2";
-    width: auto;
-    height: auto;
-    margin-right: 240px;
-    top: 248px;
-    left: 54px;
     border: 2px solid #FFFFFF;
 }
 
@@ -439,4 +410,19 @@ button[type="submit"] {
 .moreInformation:hover {
     border: 1px solid #082BF1;
     background-color: #082BF1;
+}
+
+.hidden {
+display: none;
+}
+
+.overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 265%;
+background-color: rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(0.8px);
+z-index: 5;
 }
