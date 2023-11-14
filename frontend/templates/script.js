@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="description">${movie.description}</p>
                         <a class="moreInformation" onclick="showMovie('${urlSingleMovie}')">Informations supplémentaires</a>
                         <a class="playMovie">Regarder le film</a>
-                        <div id="myModal" class="modal"></div>
+
                     </div>
                     `;
                     movieNumber1Area.appendChild(movieInfo);
@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showMovie(urlSingleMovie) {
     let modal = document.getElementById("myModal");
+    let overlay = document.querySelector(".overlay");
+    modal.classList.remove("hidden");
+	overlay.classList.remove("hidden");
+    centerModal();
 
     fetch(urlSingleMovie)
     .then(response => response.json())
@@ -107,8 +111,11 @@ function showMovie(urlSingleMovie) {
 }
 
 function closeBtn() {
-  let modal = document.getElementById("myModal");
-    let deleteDiv = modal.querySelectorAll("div")
+    let modal = document.getElementById("myModal");
+    let deleteDiv = modal.querySelectorAll("div");
+    let overlay = document.querySelector(".overlay");
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
     deleteDiv.forEach(div => {
         div.remove();
 
@@ -214,3 +221,10 @@ let buttonAreaRight = document.getElementById('buttonAreaRight');
 buttonAreaRight.addEventListener("click", function () {
     console.log("Boutton droit")
 });
+
+function centerModal() {
+    let modal = document.querySelector('.modal');
+    modal.style.top = '80%';
+    modal.style.left = '50%';
+    modal.style.transform = 'translate(-50%, -50%)';
+}
