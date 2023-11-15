@@ -355,7 +355,8 @@ button[type="submit"] {
 .R2,
 .R3,
 .R4,
-.R5
+.R5N1,
+.R5N2,
 .R6,
 .R7 {
     width: auto;
@@ -378,6 +379,18 @@ button[type="submit"] {
     "R7";
 }
 
+.R5N1 {
+    display: grid;
+    grid-template-areas:
+    "imdb_score duration date_published";
+
+}
+
+.R5N2 {
+    display: grid;
+    grid-template-areas:
+    "rated genre";
+}
 
 /* Bouton plus d'informations */
 .moreInformation {
