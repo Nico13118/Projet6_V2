@@ -1,7 +1,9 @@
 //script.js
 
+// Affichage du meilleur film
 document.addEventListener('DOMContentLoaded', () => {
     let movieNumber1Area = document.getElementById('movieNumber1Area');
+
     fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
         .then(response => response.json())
         .then(movies => {
@@ -16,16 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(movie => {
                 let movieInfo = document.createElement('div');
                 // Ajout des informations d'un film dans chaque balise
+                let cat = "0";
                 let bestImage = "https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/6116cc072824771992111acec7ba236e177d3e1975b87fa574dffb64f49a5b94._RI_TTW_SX720_FMjpg_.jpg";
                 movieInfo.innerHTML = `
                     <div class="rectangle1">
                         <h1 class="page_title">Meilleur Film</h1>
                         <a href="javascript:void(0);">
-                        <img class="single_image" src="${bestImage}" alt="${selectMovie.title}" onclick="showMovie('${urlSingleMovie}')">
+                        <img class="single_image" src="${bestImage}" alt="${selectMovie.title}" onclick="showMovie('${urlSingleMovie}', '${cat}')">
                         </a>
                         <h2 class="movie_title">${selectMovie.title}</h2>
                         <p class="description">${movie.description}</p>
-                        <a class="moreInformation" onclick="showMovie('${urlSingleMovie}')">Informations supplémentaires</a>
+                        <a class="moreInformation" onclick="showMovie('${urlSingleMovie}', '${cat}')">Informations supplémentaires</a>
                         <a class="playMovie">Regarder le film</a>
 
                     </div>
@@ -34,13 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 });
-
-function showMovie(urlSingleMovie) {
+// Fonction qui affiche le fenêtre modale contenant les informations d'un film
+function showMovie(urlSingleMovie, cat) {
     let modal = document.getElementById("myModal");
     let overlay = document.querySelector(".overlay");
     modal.classList.remove("hidden");
 	overlay.classList.remove("hidden");
-    centerModal();
+    centerModal(cat);
 
     fetch(urlSingleMovie)
     .then(response => response.json())
@@ -110,6 +113,7 @@ function showMovie(urlSingleMovie) {
 
 }
 
+// Fonction qui ferme la fenêtre modale et supprime toutes les balises div
 function closeBtn() {
     let modal = document.getElementById("myModal");
     let deleteDiv = modal.querySelectorAll("div");
@@ -125,6 +129,7 @@ function closeBtn() {
 // Catégorie 1 liste de films les mieux notés
 document.addEventListener('DOMContentLoaded', () => {
     let moviesDetails1 = document.getElementById('moviesDetails1');
+    let cat = "1";
 
     fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
         .then(response => response.json())
@@ -136,10 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 let movieInfo1 = document.createElement('div');
                 movieInfo1.innerHTML = `
                     <a href="javascript:void(0);">
-                    <img class="category1" src="${movie1.image_url}" alt="${movie1.title}" onclick="showMovie('${movie1.url}')">
+                    <img class="category1" src="${movie1.image_url}" alt="${movie1.title}" onclick="showMovie('${movie1.url}', '${cat}')">
                     </a>
                 `;
                 moviesDetails1.appendChild(movieInfo1);
+
             });
         });
 });
@@ -147,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Catégorie 2 Liste de films d'action
 document.addEventListener('DOMContentLoaded', () => {
     let moviesDetails2 = document.getElementById('moviesDetails2');
+    let cat = "2";
 
     fetch('http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&sort_by=-year%2C-imdb_score')
         .then(response => response.json())
@@ -158,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let movieInfo2 = document.createElement('div');
                 movieInfo2.innerHTML = `
                     <a href="javascript:void(0);">
-                    <img class="category2" src="${movie2.image_url}" alt="${movie2.title}" onclick="showMovie('${movie2.url}')">
+                    <img class="category2" src="${movie2.image_url}" alt="${movie2.title}" onclick="showMovie('${movie2.url}', '${cat}')">
                     </a>
                 `;
                 moviesDetails2.appendChild(movieInfo2)
@@ -169,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Catégorie 3 Liste de films Thriller
 document.addEventListener('DOMContentLoaded', () => {
     let moviesDetails3 = document.getElementById('moviesDetails3');
-
+    let cat = "3";
     fetch('http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&&sort_by=-year,-imdb_score')
         .then(response => response.json())
 
@@ -180,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let movieInfo3 = document.createElement('div');
                 movieInfo3.innerHTML = `
                     <a href="javascript:void(0);">
-                    <img class="category3" src="${movie3.image_url}" alt="${movie3.title}" onclick="showMovie('${movie3.url}')">
+                    <img class="category3" src="${movie3.image_url}" alt="${movie3.title}" onclick="showMovie('${movie3.url}', '${cat}')">
                     </a>
                 `;
                 moviesDetails3.appendChild(movieInfo3);
@@ -192,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Catégorie 4 Liste de films d'horreur
 document.addEventListener('DOMContentLoaded', () => {
     let moviesDetails4 = document.getElementById('moviesDetails4');
-
+    let cat = "4";
     fetch('http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&sort_by=-year%2C-imdb_score')
         .then(response => response.json())
         .then(data4 => {
@@ -203,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let movieInfo4 = document.createElement('div');
                 movieInfo4.innerHTML = `
                     <a href="javascript:void(0);">
-                    <img class="category4" src="${movie4.image_url}" alt="${movie4.title}" onclick="showMovie('${movie4.url}')">
+                    <img class="category4" src="${movie4.image_url}" alt="${movie4.title}" onclick="showMovie('${movie4.url}', '${cat}')">
                     </a>
                 `;
                 moviesDetails4.appendChild(movieInfo4)
@@ -222,9 +229,21 @@ buttonAreaRight.addEventListener("click", function () {
     console.log("Boutton droit")
 });
 
-function centerModal() {
+// Fonction qui permet de placer la fenêtre modale selon le film selectionné
+function centerModal(cat) {
     let modal = document.querySelector('.modal');
-    modal.style.top = '80%';
-    modal.style.left = '50%';
-    modal.style.transform = 'translate(-50%, -50%)';
+    console.log(cat)
+    if (cat === "0") {
+        console.log("La valeur de cat et 0");
+        modal.style.top = '40%';
+    } else if (cat === "1") {
+        console.log("La valeur de cat et 1");
+        modal.style.top = '130%';
+    } else if (cat === "2") {
+        console.log("La valeur de cat et 2");
+        modal.style.top = '175%';
+    } else if (cat === "3" || cat === "4") {
+        console.log("La valeur de cat et 3 ou 4");
+        modal.style.top = '200%';
+    }
 }
