@@ -61,13 +61,13 @@ function showMovie(urlSingleMovie, cat) {
         if (!infoUsaGrossIncome) {
             infoUsaGrossIncome = "Information inconnue"
         } else {
-            infoUsaGrossIncome = infoUsaGrossIncome + " $"
+            infoUsaGrossIncome = infoUsaGrossIncome + " $ US"
         }
 
         if (!infoWorldwildGrossIncome) {
             infoWorldwildGrossIncome = "Information inconnue"
         } else {
-            infoWorldwildGrossIncome = infoWorldwildGrossIncome + " $"
+            infoWorldwildGrossIncome = infoWorldwildGrossIncome + " $ US"
         }
 
 
