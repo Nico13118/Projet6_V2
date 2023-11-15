@@ -60,11 +60,16 @@ function showMovie(urlSingleMovie, cat) {
 
         if (!infoUsaGrossIncome) {
             infoUsaGrossIncome = "Information inconnue"
+        } else {
+            infoUsaGrossIncome = infoUsaGrossIncome + " $"
         }
 
         if (!infoWorldwildGrossIncome) {
             infoWorldwildGrossIncome = "Information inconnue"
+        } else {
+            infoWorldwildGrossIncome = infoWorldwildGrossIncome + " $"
         }
+
 
         let movieInfo = document.createElement('div');
             movieInfo.innerHTML = `
@@ -119,10 +124,10 @@ function showMovie(urlSingleMovie, cat) {
                             <span>Pays : ${movie.countries}</span>
                         </div>
                         <div class="usa_gross_income">
-                            <span>Box office USA : ${infoUsaGrossIncome} $</span>
+                            <span>Box office USA : ${infoUsaGrossIncome}</span>
                         </div>
                         <div class="worldwide_gross_income">
-                            <span>Box office mondial : ${infoWorldwildGrossIncome} $</span>
+                            <span>Box office mondial : ${infoWorldwildGrossIncome}</span>
                         </div>
                     </div>
                 </div>
