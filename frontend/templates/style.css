@@ -345,7 +345,7 @@ button[type="submit"] {
 
 .container1 {
     position: relative;
-    background-color: #000000;
+    background-color: #082C78;
     display: grid;
     grid-template-areas: "R1 R2";
     border: 2px solid #FFFFFF;
