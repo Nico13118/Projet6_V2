@@ -383,7 +383,8 @@ button[type="submit"] {
     display: grid;
     grid-template-areas:
     "imdb_score duration date_published";
-
+    grid-template-columns: 150px 200px 300px;
+    grid-column-gap: 30px;
 }
 
 .R5N2 {
