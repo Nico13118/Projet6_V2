@@ -66,16 +66,19 @@ function showMovie(urlSingleMovie, cat) {
                         <p class="description2">${movie.long_description}</p>
                     </div>
 
-                    <div class="R5">
+                    <div class="R5N1">
                         <div class="imdb_score">
                             <span>IMDb : ${movie.imdb_score}</span>
                         </div>
                         <div class="duration">
-                            <span>Durée : ${movie.duration}</span>
+                            <span>Durée : ${movie.duration} min</span>
                         </div>
                         <div class="date_published">
                             <span>Date de sortie : ${movie.date_published}</span>
                         </div>
+                    </div>
+
+                    <div class="R5N2">
                         <div class="rated">
                             <span>Notation du contenu : ${movie.rated}</span>
                         </div>
