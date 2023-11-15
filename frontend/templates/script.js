@@ -3,8 +3,8 @@
 // Affichage du meilleur film
 document.addEventListener('DOMContentLoaded', () => {
     let movieNumber1Area = document.getElementById('movieNumber1Area');
-
-    fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
+    fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-usa_gross_income')
+    //fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
         .then(response => response.json())
         .then(movies => {
             let bestMovieData = movies.results; // Ma liste de film selectionné se trouve dans le champ "results"
@@ -48,6 +48,24 @@ function showMovie(urlSingleMovie, cat) {
     fetch(urlSingleMovie)
     .then(response => response.json())
     .then( movie => {
+        let infoRated = movie.rated;
+        let infoUsaGrossIncome = movie.usa_gross_income;
+        let infoWorldwildGrossIncome = movie.worldwide_gross_income;
+
+        console.log(infoUsaGrossIncome)
+        console.log(infoWorldwildGrossIncome)
+        if (infoRated === "Not rated or unkown rating") {
+            infoRated = "Information inconnue"
+        }
+
+        if (!infoUsaGrossIncome) {
+            infoUsaGrossIncome = "Information inconnue"
+        }
+
+        if (!infoWorldwildGrossIncome) {
+            infoWorldwildGrossIncome = "Information inconnue"
+        }
+
         let movieInfo = document.createElement('div');
             movieInfo.innerHTML = `
             <div class="container1">
@@ -80,7 +98,7 @@ function showMovie(urlSingleMovie, cat) {
 
                     <div class="R5N2">
                         <div class="rated">
-                            <span>Notation du contenu : ${movie.rated}</span>
+                            <span>Notation du contenu : ${infoRated}</span>
                         </div>
                         <div class="genres">
                             <span>Genres : ${movie.genres}</span>
@@ -101,10 +119,10 @@ function showMovie(urlSingleMovie, cat) {
                             <span>Pays : ${movie.countries}</span>
                         </div>
                         <div class="usa_gross_income">
-                            <span>Box office USA : ${movie.usa_gross_income}</span>
+                            <span>Box office USA : ${infoUsaGrossIncome} $</span>
                         </div>
                         <div class="worldwide_gross_income">
-                            <span>Box office mondial : ${movie.worldwide_gross_income}</span>
+                            <span>Box office mondial : ${infoWorldwildGrossIncome} $</span>
                         </div>
                     </div>
                 </div>
