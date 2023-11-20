@@ -311,18 +311,34 @@ button[type="submit"] {
 .actors,
 .directors,
 .genres,
-.rated,
 .date_published,
 .duration,
 .imdb_score {
     display: flex;
-    margin-left: 10px;
     margin: auto;
-    margin-top: 4px;
     margin-left: 10px;
+    margin-top: 4px;
     font-size: 25px;
     color: #FFFFFF;
 }
+
+.rectangle_rated {
+    border: 5px solid #000000;
+/*
+
+*/
+}
+
+.rated {
+    display: flex;
+    font-size: 25px;
+    padding-right: 5px;
+/*
+
+*/
+
+}
+
 
 .close {
     z-index: 1;
@@ -377,20 +393,23 @@ button[type="submit"] {
     "R5"
     "R6"
     "R7";
+    grid-row-gap: 10px;
 }
 
 .R5N1 {
     display: grid;
     grid-template-areas:
-    "imdb_score duration date_published";
-    grid-template-columns: 150px 200px 300px;
-    grid-column-gap: 30px;
+    "imdb_score duration date_published rated";
+    grid-template-columns: 130px 190px 300px auto;
+    /*grid-column-gap: 0px;*/
 }
 
 .R5N2 {
     display: grid;
     grid-template-areas:
-    "rated genre";
+    "genre";
+    grid-template-columns: 900px;
+    grid-column-gap: 0px;
 }
 
 /* Bouton plus d'informations */
