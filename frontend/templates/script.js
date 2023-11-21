@@ -199,13 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 });
 
-// fonction qui va récupérer les films sur 2 pages
-function getMovie1() {
-
-    let pageOne = fetch('http://127.0.0.1:8000/api/v1/titles/?page=1&sort_by=-imdb_score%2C-votes')
-    let pageTwo = fetch('http://127.0.0.1:8000/api/v1/titles/?page=2&sort_by=-imdb_score%2C-votes')
-}
-
 // Catégorie 2 Liste de films d'action
 document.addEventListener('DOMContentLoaded', () => {
     let moviesDetails2 = document.getElementById('moviesDetails2');
