@@ -51,11 +51,28 @@ function showMovie(urlSingleMovie, cat) {
         let infoRated = movie.rated;
         let infoUsaGrossIncome = movie.usa_gross_income;
         let infoWorldwildGrossIncome = movie.worldwide_gross_income;
+        let typeOfClassification = "age";
 
-        console.log(infoUsaGrossIncome)
-        console.log(infoWorldwildGrossIncome)
-        if (infoRated === "Not rated or unkown rating") {
-            infoRated = "Information inconnue"
+        if ((infoRated <= 7) || infoRated === "G") {
+            infoRated = "TOUS PUBLICS"
+            typeOfClassification = "other";
+
+        } else if (infoRated <= 10) {
+            infoRated = "-10"
+
+        } else if (infoRated <= 12) {
+            infoRated = "-12"
+
+        } else if ((infoRated <= 16) || infoRated === "PG") {
+            infoRated = "-16"
+            configureRankingIcon(typeOfClassification);
+
+        } else if ((infoRated <= 18) || infoRated === "X" || infoRated === "R" || infoRated === "NC-17" || infoRated === "M") {
+            infoRated = "-18"
+
+        } else {
+            infoRated = "CLASSIFICATION INCONNUE"
+            typeOfClassification = "other";
         }
 
         if (!infoUsaGrossIncome) {
@@ -99,12 +116,12 @@ function showMovie(urlSingleMovie, cat) {
                         <div class="date_published">
                             <span>Date de sortie : ${movie.date_published}</span>
                         </div>
+                        <div class="rectangle_rated">
+                            <span class="rated">${infoRated}</span>
+                        </div>
                     </div>
 
                     <div class="R5N2">
-                        <div class="rated">
-                            <span>Notation du contenu : ${infoRated}</span>
-                        </div>
                         <div class="genres">
                             <span>Genres : ${movie.genres}</span>
                         </div>
@@ -135,8 +152,8 @@ function showMovie(urlSingleMovie, cat) {
             </div>
         `;
         modal.appendChild(movieInfo)
+        configureRankingIcon(typeOfClassification);
     });
-
 }
 
 // Fonction qui ferme la fenêtre modale et supprime toutes les balises div
@@ -156,8 +173,13 @@ function closeBtn() {
 document.addEventListener('DOMContentLoaded', () => {
     let moviesDetails1 = document.getElementById('moviesDetails1');
     let cat = "1";
+    //let test = "http://127.0.0.1:8000/api/v1/titles/?page=" + info + "&sort_by=-imdb_score%2C-votes";
+    //fetch('http://127.0.0.1:8000/api/v1/titles/?page=2&sort_by=-imdb_score%2C-votes')
 
-    fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
+    let nbrPages = [3, 2, 1];
+    nbrPages.forEach(nbrPage => {
+    let infoPage = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage + "&sort_by=-imdb_score%2C-votes";
+    fetch(infoPage)
         .then(response => response.json())
 
         .then(data1 => {
@@ -174,7 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             });
         });
+    })
 });
+
+// fonction qui va récupérer les films sur 2 pages
+function getMovie1() {
+
+    let pageOne = fetch('http://127.0.0.1:8000/api/v1/titles/?page=1&sort_by=-imdb_score%2C-votes')
+    let pageTwo = fetch('http://127.0.0.1:8000/api/v1/titles/?page=2&sort_by=-imdb_score%2C-votes')
+}
 
 // Catégorie 2 Liste de films d'action
 document.addEventListener('DOMContentLoaded', () => {
@@ -271,5 +301,30 @@ function centerModal(cat) {
     } else if (cat === "3" || cat === "4") {
         console.log("La valeur de cat et 3 ou 4");
         modal.style.top = '200%';
+    }
+}
+
+// Fonction qui permet de configurer le pictogramme des classements des films
+function configureRankingIcon (typeOfClassification) {
+    let rectangleRated = document.querySelector('.rectangle_rated');
+    let rated = document.querySelector('.rated');
+    if (typeOfClassification === "age") {
+        rectangleRated.style.height = "33px";
+        rectangleRated.style.width = "38px";
+        rectangleRated.style.backgroundColor = "#000000";
+        rectangleRated.style.padding = "1px";
+        rectangleRated.style.marginTop = "-5px";
+        rated.style.backgroundColor = "#FFFFFF";
+        rated.style.borderRadius = "50%";
+        rated.style.width = "33px";
+        rated.style.height = "33px";
+        rated.style.alignItems = "center";
+
+    } else if (typeOfClassification === "other") {
+        rectangleRated.style.backgroundColor = "#FFFFFF";
+        rectangleRated.style.height = "25px";
+        rectangleRated.style.width = "auto";
+        rectangleRated.style.marginRight = "auto";
+        rated.style.marginRight = "auto";
     }
 }
