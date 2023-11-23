@@ -194,72 +194,77 @@ button[type="submit"] {
     margin-bottom: 0px;
 }
 
-/* Liste de film catégorie2*/
+/* Liste de film pour chaque catégorie*/
+.carousel {
+    overflow: auto;
+    scroll-behavior: smooth;
+    /*
+    scrollbar-width: none;
+    */
+}
+.carousel::-webkit-scrollbar {
+    height: 0px;
+}
+
 .movie_category1_area,
 .movie_category2_area,
 .movie_category3_area,
 .movie_category4_area {
-    display: flex;
-    align-items: center;
-}
-
-.category1,
-.category2,
-.category3,
-.category4 {
-    display: flex;
-    margin-right: 20px;
-    align-items: center;
+    left: 10%;
+    width: 100%;
+    max-width: 1374px;
+    position: relative;
 }
 
 #moviesDetails1,
 #moviesDetails2,
 #moviesDetails3,
 #moviesDetails4 {
-    display: flex;
-    width: auto;
-    height: auto;
-    margin-top: 20px;
-    margin-left: 20px;
-
+    display: grid;
+    grid-gap: 16px;
+    grid-auto-flow: column;
+    margin: auto;
+    box-sizing: border-box;
 }
 
-#buttonAreaLeft {
+/* Zone des boutons */
+.prev {
+    top: 50%;
+    left: -100px;
+    transform: translate(50%, -50%);
+    display: none;
+}
+
+.next{
+    top: 50%;
+    right: -40px;
+    transform: translate(50%, -50%);
+}
+
+.prev,
+.next {
     display: flex;
-    width: 35px;
-    height: auto;
+    justify-content: center;
+    align-content: center;
+    border: none;
+    padding: 8px;
+    outline: 0px;
     cursor: pointer;
+    position: absolute;
     background-color: transparent;
-    border: 1px transparent;
-}
-
-#buttonAreaRight {
-    display: flex;
-    width: 35px;
-    height: auto;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px transparent;
 
 }
-
-.button_left {
-    width: 30px;
-    height: 30px;
+svg.button_next,
+svg.button_prev {
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    background-image: url("nav_button.png");
+    height: 40px;
+    width: 40px;
+
+}
+svg.button_prev {
     transform: rotate(180deg);
-    background-image: url("nav_button.png");
-
-}
-
-.button_right {
-    width: 30px;
-    height: 30px;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-image: url("nav_button.png");
-
 }
 
 /*  Zone boite de dialogue */
