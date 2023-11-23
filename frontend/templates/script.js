@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //let test = "http://127.0.0.1:8000/api/v1/titles/?page=" + info + "&sort_by=-imdb_score%2C-votes";
     //fetch('http://127.0.0.1:8000/api/v1/titles/?page=2&sort_by=-imdb_score%2C-votes')
 
-    let nbrPages = [3, 2, 1];
+    let nbrPages = [1, 2, 3];
     nbrPages.forEach(nbrPage => {
     let infoPage = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage + "&sort_by=-imdb_score%2C-votes";
     fetch(infoPage)
@@ -266,17 +266,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 });
+const gap = 16;
+//const width = 182;
+const carousel = document.querySelector(".carousel"),
+    moviesDetails1 = document.getElementById("moviesDetails1"),
+    moviesDetails2 = document.getElementById("moviesDetails2"),
+    moviesDetails3 = document.getElementById("moviesDetails3"),
+    moviesDetails4 = document.getElementById("moviesDetails4"),
+    prev = document.querySelector('.prev'),
+    next = document.querySelector('.next');
 
-
-let buttonAreaLeft = document.getElementById('buttonAreaLeft');
-buttonAreaLeft.addEventListener("click", function () {
-    console.log("Boutton gauche")
+next.addEventListener("click", e => {
+    carousel.scrollBy(width + gap, 0);
+    if (carousel.scrollWidth !== 0) {
+        prev.style.display = "flex";
+    }
+    if (moviesDetails1.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+        next.style.display = "none";
+    }
 });
 
-let buttonAreaRight = document.getElementById('buttonAreaRight');
-buttonAreaRight.addEventListener("click", function () {
-    console.log("Boutton droit")
+prev.addEventListener("click", e => {
+   carousel.scrollBy(-(width + gap), 0);
+   if (carousel.scrollLeft - width - gap <= 0) {
+            prev.style.display = "none";
+    }
+    if (!moviesDetails1.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+        next.style.display = "flex";
+    }
 });
+
+//let width = carousel.offsetWidth;
+let width = moviesDetails1.offsetParent.children[0].offsetParent.offsetLeft;
+window.addEventListener("resize", e => (width = moviesDetails1.offsetParent.children[0].offsetParent.offsetLeft));
+
 
 // Fonction qui permet de placer la fenêtre modale selon le film selectionné
 function centerModal(cat) {
