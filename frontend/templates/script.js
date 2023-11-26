@@ -1,10 +1,10 @@
 //script.js
-
+showBestMovie();
 // Affichage du meilleur film
-document.addEventListener('DOMContentLoaded', () => {
+function showBestMovie () {
+    document.addEventListener('DOMContentLoaded', () => {
     let movieNumber1Area = document.getElementById('movieNumber1Area');
-    fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-usa_gross_income')
-    //fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
+    fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
         .then(response => response.json())
         .then(movies => {
             let bestMovieData = movies.results; // Ma liste de film selectionné se trouve dans le champ "results"
@@ -34,9 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     `;
                     movieNumber1Area.appendChild(movieInfo);
+
             });
         });
-});
+    });
+showMovieCategory1();
+}
+
 // Fonction qui affiche le fenêtre modale contenant les informations d'un film
 function showMovie(urlSingleMovie, cat) {
     let modal = document.getElementById("myModal");
@@ -170,110 +174,121 @@ function closeBtn() {
 }
 
 // Catégorie 1 liste de films les mieux notés
-document.addEventListener('DOMContentLoaded', () => {
-    let moviesDetails1 = document.getElementById('moviesDetails1');
-    let cat = "1";
-    //let test = "http://127.0.0.1:8000/api/v1/titles/?page=" + info + "&sort_by=-imdb_score%2C-votes";
-    //fetch('http://127.0.0.1:8000/api/v1/titles/?page=2&sort_by=-imdb_score%2C-votes')
+function showMovieCategory1 () {
+    document.addEventListener('DOMContentLoaded', () => {
+        let moviesDetails1 = document.getElementById('moviesDetails1');
+        let cat = "1";
+        let nbrPages1 = [1, 2, 3];
+        nbrPages1.forEach(nbrPage1 => {
+        let infoPage1 = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage1 + "&sort_by=-imdb_score%2C-votes";
+        fetch(infoPage1)
+            .then(response => response.json())
 
-    let nbrPages1 = [1, 2, 3];
-    nbrPages1.forEach(nbrPage1 => {
-    let infoPage1 = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage1 + "&sort_by=-imdb_score%2C-votes";
-    fetch(infoPage1)
-        .then(response => response.json())
+            .then(data1 => {
+                let movies1 = data1.results;  // La liste des films se trouve dans data1.results
+                movies1.forEach(movie1 => {
+                    // Pour chaque film, un élément est créer pour affichez l'image'
+                    let movieInfo1 = document.createElement('div');
+                    movieInfo1.innerHTML = `
+                        <a href="javascript:void(0);">
+                        <img class="category1" src="${movie1.image_url}" alt="${movie1.title}" onclick="showMovie('${movie1.url}', '${cat}')">
+                        </a>
+                    `;
+                    moviesDetails1.appendChild(movieInfo1);
 
-        .then(data1 => {
-            let movies1 = data1.results;  // La liste des films se trouve dans data1.results
-            movies1.forEach(movie1 => {
-                // Pour chaque film, un élément est créer pour affichez l'image'
-                let movieInfo1 = document.createElement('div');
-                movieInfo1.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="category1" src="${movie1.image_url}" alt="${movie1.title}" onclick="showMovie('${movie1.url}', '${cat}')">
-                    </a>
-                `;
-                moviesDetails1.appendChild(movieInfo1);
 
+                });
             });
         });
     });
-});
+showMovieCategory2();
+}
 
 // Catégorie 2 Liste de films d'action
-document.addEventListener('DOMContentLoaded', () => {
-    let moviesDetails2 = document.getElementById('moviesDetails2');
-    let cat = "2";
-    let nbrPage2 = [1, 2, 3];
-    nbrPage2.forEach(nbrPage2 => {
-    let infoPage2 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage2 + "&sort_by=-year%2C-imdb_score"
-    fetch(infoPage2)
-        .then(response => response.json())
-        .then(data2 => {
-            let movies2 = data2.results;
-            movies2.forEach(movie2 => {
-                let movieInfo2 = document.createElement('div');
-                movieInfo2.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="category2" src="${movie2.image_url}" alt="${movie2.title}" onclick="showMovie('${movie2.url}', '${cat}')">
-                    </a>
-                `;
-                moviesDetails2.appendChild(movieInfo2)
+function showMovieCategory2 () {
+    document.addEventListener('DOMContentLoaded', () => {
+        let moviesDetails2 = document.getElementById('moviesDetails2');
+        let cat = "2";
+        let nbrPage2 = [1, 2, 3];
+        nbrPage2.forEach(nbrPage2 => {
+        let infoPage2 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage2 + "&sort_by=-year%2C-imdb_score"
+        fetch(infoPage2)
+            .then(response => response.json())
+            .then(data2 => {
+                let movies2 = data2.results;
+                movies2.forEach(movie2 => {
+                    let movieInfo2 = document.createElement('div');
+                    movieInfo2.innerHTML = `
+                        <a href="javascript:void(0);">
+                        <img class="category2" src="${movie2.image_url}" alt="${movie2.title}" onclick="showMovie('${movie2.url}', '${cat}')">
+                        </a>
+                    `;
+                    moviesDetails2.appendChild(movieInfo2)
+
+                });
             });
         });
     });
-});
+showMovieCategory3();
+}
 
 
 // Catégorie 3 Liste de films Thriller
-document.addEventListener('DOMContentLoaded', () => {
-    let moviesDetails3 = document.getElementById('moviesDetails3');
-    let cat = "3";
-    let nbrPage3 = [1, 2, 3];
-    nbrPage3.forEach(nbrPage3 => {
-    let infoPage3 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage3 + "&sort_by=-year%2C-imdb_score"
-    fetch(infoPage3)
-        .then(response => response.json())
-        .then(data3 => {
-            let movies3 = data3.results;  // La liste des films se trouve dans data3.results
-            movies3.forEach(movie3 => {
-                // Pour chaque film, un élément est créer pour affichez l'image'
-                let movieInfo3 = document.createElement('div');
-                movieInfo3.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="category3" src="${movie3.image_url}" alt="${movie3.title}" onclick="showMovie('${movie3.url}', '${cat}')">
-                    </a>
-                `;
-                moviesDetails3.appendChild(movieInfo3);
+function showMovieCategory3 () {
+    document.addEventListener('DOMContentLoaded', () => {
+        let moviesDetails3 = document.getElementById('moviesDetails3');
+        let cat = "3";
+        let nbrPage3 = [1, 2, 3];
+        nbrPage3.forEach(nbrPage3 => {
+        let infoPage3 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage3 + "&sort_by=-year%2C-imdb_score"
+        fetch(infoPage3)
+            .then(response => response.json())
+            .then(data3 => {
+                let movies3 = data3.results;  // La liste des films se trouve dans data3.results
+                movies3.forEach(movie3 => {
+                    // Pour chaque film, un élément est créer pour affichez l'image'
+                    let movieInfo3 = document.createElement('div');
+                    movieInfo3.innerHTML = `
+                        <a href="javascript:void(0);">
+                        <img class="category3" src="${movie3.image_url}" alt="${movie3.title}" onclick="showMovie('${movie3.url}', '${cat}')">
+                        </a>
+                    `;
+                    moviesDetails3.appendChild(movieInfo3);
+
+                });
             });
         });
     });
-});
+showMovieCategory4();
+}
 
 
 
 // Catégorie 4 Liste de films d'horreur
-document.addEventListener('DOMContentLoaded', () => {
-    let moviesDetails4 = document.getElementById('moviesDetails4');
-    let cat = "4";
-    let nbrPages4 = [1, 2, 3];
-    nbrPages4.forEach(nbrPage4 => {
-    let infoPage4 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage4 + "&sort_by=-year%2C-imdb_score";
-    fetch(infoPage4)
-        .then(response => response.json())
-        .then(data4 => {
-            let movies4 = data4.results;
-            movies4.forEach(movie4 => {
-                let movieInfo4 = document.createElement('div');
-                movieInfo4.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="category4" src="${movie4.image_url}" alt="${movie4.title}" onclick="showMovie('${movie4.url}', '${cat}')">
-                    </a>
-                `;
-                moviesDetails4.appendChild(movieInfo4)
+function showMovieCategory4 () {
+    document.addEventListener('DOMContentLoaded', () => {
+        let moviesDetails4 = document.getElementById('moviesDetails4');
+        let cat = "4";
+        let nbrPages4 = [1, 2, 3];
+        nbrPages4.forEach(nbrPage4 => {
+        let infoPage4 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage4 + "&sort_by=-year%2C-imdb_score";
+        fetch(infoPage4)
+            .then(response => response.json())
+            .then(data4 => {
+                let movies4 = data4.results;
+                movies4.forEach(movie4 => {
+                    let movieInfo4 = document.createElement('div');
+                    movieInfo4.innerHTML = `
+                        <a href="javascript:void(0);">
+                        <img class="category4" src="${movie4.image_url}" alt="${movie4.title}" onclick="showMovie('${movie4.url}', '${cat}')">
+                        </a>
+                    `;
+                    moviesDetails4.appendChild(movieInfo4)
+                });
             });
         });
     });
-});
+}
 
 
 // zone carousel
