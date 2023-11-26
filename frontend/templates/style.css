@@ -9,11 +9,14 @@ input[type="search" i]::-webkit-color-swatch {
 }
 */
 
-#wallPaper{
-    background-image: url("dark_wallpaper.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+body {
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    background-color: #000000;
 }
 
 label,
@@ -23,7 +26,9 @@ legend{
 
 .top_headband{
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100%;
 
 }
 
@@ -148,9 +153,10 @@ button[type="submit"] {
 
 /* Zone meilleur film*/
 #movieNumber1Area{
-/*    position: relative; */
+    position: relative;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .rectangle1 {
@@ -159,7 +165,7 @@ button[type="submit"] {
 }
 
 .single_image {
-    width: 1500px;
+    width: 1520px;
     height: auto;
     background-size: 100% 100%;
 
@@ -194,26 +200,22 @@ button[type="submit"] {
     margin-bottom: 0px;
 }
 
-/* Liste de film pour chaque catégorie*/
-.carousel {
-    overflow: auto;
-    scroll-behavior: smooth;
-    /*
-    scrollbar-width: none;
-    */
-}
-.carousel::-webkit-scrollbar {
-    height: 0px;
+/* Paramétrage des 4 catégories*/
+.container_category1,
+.container_category2,
+.container_category3,
+.container_category4 {
+    max-width: 1575px;
+    position: relative;
+    width: 100%;
 }
 
-.movie_category1_area,
-.movie_category2_area,
-.movie_category3_area,
-.movie_category4_area {
-    left: 10%;
-    width: 100%;
-    max-width: 1374px;
-    position: relative;
+.category1,
+.category2,
+.category3,
+.category4 {
+    width: 205px;
+    height: auto;
 }
 
 #moviesDetails1,
@@ -221,11 +223,22 @@ button[type="submit"] {
 #moviesDetails3,
 #moviesDetails4 {
     display: grid;
-    grid-gap: 16px;
+    grid-gap: 20px;
     grid-auto-flow: column;
     margin: auto;
     box-sizing: border-box;
 }
+
+
+/* Paramétrage carousel */
+.carousel {
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+.carousel::-webkit-scrollbar {
+    height: 0px;
+}
+
 
 /* Zone des boutons */
 .prev {
