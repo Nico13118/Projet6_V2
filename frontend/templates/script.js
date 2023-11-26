@@ -266,39 +266,44 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 });
-const gap = 16;
-//const width = 182;
-const carousel = document.querySelector(".carousel"),
+
+// zone carousel
+const gap = 20;
+let carousel = document.querySelector(".carousel"),
     moviesDetails1 = document.getElementById("moviesDetails1"),
     moviesDetails2 = document.getElementById("moviesDetails2"),
     moviesDetails3 = document.getElementById("moviesDetails3"),
     moviesDetails4 = document.getElementById("moviesDetails4"),
+    scrollNextPrev = moviesDetails1.clientWidth,
     prev = document.querySelector('.prev'),
     next = document.querySelector('.next');
 
 next.addEventListener("click", e => {
-    carousel.scrollBy(width + gap, 0);
-    if (carousel.scrollWidth !== 0) {
+    let width = moviesDetails1.children[0].clientWidth + gap;
+    carousel.scrollBy(width, 0);
+    scrollNextPrev += width
+    if (scrollNextPrev === 0) {
         prev.style.display = "flex";
     }
-    if (moviesDetails1.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+    if (scrollNextPrev >= carousel.scrollWidth) {
         next.style.display = "none";
     }
 });
 
 prev.addEventListener("click", e => {
-   carousel.scrollBy(-(width + gap), 0);
-   if (carousel.scrollLeft - width - gap <= 0) {
-            prev.style.display = "none";
+   let width = moviesDetails1.children[0].clientWidth + gap;
+   let lengthCarousel = moviesDetails1.clientWidth;
+   carousel.scrollBy(-width, 0);
+   scrollNextPrev -= width
+   if (scrollNextPrev <= lengthCarousel) {
+        prev.style.display = "none";
     }
-    if (!moviesDetails1.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+    if (scrollNextPrev < carousel.scrollWidth) {
         next.style.display = "flex";
     }
 });
 
-//let width = carousel.offsetWidth;
-let width = moviesDetails1.offsetParent.children[0].offsetParent.offsetLeft;
-window.addEventListener("resize", e => (width = moviesDetails1.offsetParent.children[0].offsetParent.offsetLeft));
+window.addEventListener("resize", e => (width = moviesDetails1.children[0].clientWidth + gap));
 
 
 // Fonction qui permet de placer la fenêtre modale selon le film selectionné
