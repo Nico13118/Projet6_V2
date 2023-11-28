@@ -185,6 +185,8 @@ function showMovieCategory1 () {
         movieCounter1 = 0; // Compteur de film
         nbrMovies1 = 0; // // Nombre total de film
         nbrPages1 = [1, 2, 3];
+    prev1.style.display = "flex";
+    next1.style.display = "flex";
     nbrPages1.forEach(nbrPage1 => {
     let infoPage1 = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage1 + "&sort_by=-imdb_score%2C-votes";
     fetch(infoPage1)
@@ -251,6 +253,8 @@ function showMovieCategory2 () {
         movieCounter2 = 0; // Compteur de film
         nbrMovies2 = 0; // Nombre total de film
         nbrPages2 = [1, 2, 3];
+    prev2.style.display = "flex";
+    next2.style.display = "flex";
     nbrPages2.forEach(nbrPage2 => {
     let infoPage2 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage2 + "&sort_by=-year%2C-imdb_score"
     fetch(infoPage2)
@@ -311,6 +315,8 @@ function showMovieCategory3 () {
         movieCounter3 = 0; // Compteur de film
         nbrMovies3 = 0; // Total nombre de film
         nbrPages3 = [1, 2, 3];
+    prev3.style.display = "flex";
+    next3.style.display = "flex";
     nbrPages3.forEach(nbrPage3 => {
     let infoPage3 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage3 + "&sort_by=-year%2C-imdb_score"
     fetch(infoPage3)
@@ -369,6 +375,8 @@ function showMovieCategory4 () {
         next4 = document.querySelector('.next4');
         prev4 = document.querySelector('.prev4');
         nbrPages4 = [1, 2, 3];
+    prev4.style.display = "flex";
+    next4.style.display = "flex";
     nbrPages4.forEach(nbrPage4 => {
     let infoPage4 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage4 + "&sort_by=-year%2C-imdb_score";
     fetch(infoPage4)
