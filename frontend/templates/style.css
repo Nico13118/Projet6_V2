@@ -274,7 +274,7 @@ button[type="submit"] {
 .next2,
 .next3,
 .next4 {
-    display: flex;
+    display: none;
     justify-content: center;
     align-content: center;
     border: none;
