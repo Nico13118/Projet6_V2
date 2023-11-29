@@ -6,21 +6,21 @@ showBestMovie();
 function showBestMovie () {
     document.addEventListener('DOMContentLoaded', () => {
         let movieNumber1Area = document.getElementById('movieNumber1Area');
+            cat = "0";
+            bestImage = "https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/6116cc072824771992111acec7ba236e177d3e1975b87fa574dffb64f49a5b94._RI_TTW_SX720_FMjpg_.jpg";
         fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
         .then(response => response.json())
         .then(movies => {
             let bestMovieData = movies.results; // Ma liste de film selectionné se trouve dans le champ "results"
             // Selection du meilleur film
-            let selectMovie = bestMovieData[0];
+                selectMovie = bestMovieData[0];
             // Selection de l'id du film
-            let urlSingleMovie = selectMovie.url;
+                urlSingleMovie = selectMovie.url;
         fetch(urlSingleMovie)
             .then(response => response.json())
             .then(movie => {
                 let movieInfo = document.createElement('div');
                 // Ajout des informations d'un film dans chaque balise
-                let cat = "0";
-                let bestImage = "https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/6116cc072824771992111acec7ba236e177d3e1975b87fa574dffb64f49a5b94._RI_TTW_SX720_FMjpg_.jpg";
                 movieInfo.innerHTML = `
                     <div class="rectangle1">
                         <h1 class="page_title">Meilleur Film</h1>
@@ -44,7 +44,7 @@ function showBestMovie () {
 // Fonction qui affiche le fenêtre modale contenant les informations d'un film
 function showMovie(urlSingleMovie, cat) {
     let modal = document.getElementById("myModal");
-    let overlay = document.querySelector(".overlay");
+        overlay = document.querySelector(".overlay");
     modal.classList.remove("hidden");
 	overlay.classList.remove("hidden");
     centerModal(cat);
@@ -53,9 +53,9 @@ function showMovie(urlSingleMovie, cat) {
     .then(response => response.json())
     .then( movie => {
         let infoRated = movie.rated;
-        let infoUsaGrossIncome = movie.usa_gross_income;
-        let infoWorldwildGrossIncome = movie.worldwide_gross_income;
-        let typeOfClassification = "age";
+            infoUsaGrossIncome = movie.usa_gross_income;
+            infoWorldwildGrossIncome = movie.worldwide_gross_income;
+            typeOfClassification = "age";
 
         if ((infoRated <= 7) || infoRated === "G") {
             infoRated = "TOUS PUBLICS"
@@ -163,8 +163,8 @@ function showMovie(urlSingleMovie, cat) {
 // Fonction qui ferme la fenêtre modale et supprime toutes les balises div
 function closeBtn() {
     let modal = document.getElementById("myModal");
-    let deleteDiv = modal.querySelectorAll("div");
-    let overlay = document.querySelector(".overlay");
+        deleteDiv = modal.querySelectorAll("div");
+        overlay = document.querySelector(".overlay");
     modal.classList.add("hidden");
     overlay.classList.add("hidden");
     deleteDiv.forEach(div => {
@@ -175,13 +175,13 @@ function closeBtn() {
 
 // Catégorie 1 liste de films les mieux notés
 function showMovieCategory1 () {
-    let moviesDetails1 = document.getElementById('moviesDetails1'),
-        cat = "1",
-        lengthCarousel = moviesDetails1.clientWidth,
-        carousel1 = document.querySelector(".carousel1"),
-        scrollNextPrev1 = moviesDetails1.clientWidth,
-        next1 = document.querySelector('.next1'),
-        prev1 = document.querySelector('.prev1'),
+    let moviesDetails1 = document.getElementById('moviesDetails1');
+        cat = "1";
+        lengthCarousel = moviesDetails1.clientWidth;
+        carousel1 = document.querySelector(".carousel1");
+        scrollNextPrev1 = moviesDetails1.clientWidth;
+        next1 = document.querySelector('.next1');
+        prev1 = document.querySelector('.prev1');
         movieCounter1 = 0; // Compteur de film
         nbrMovies1 = 0; // // Nombre total de film
         nbrPages1 = [1, 2, 3];
@@ -215,7 +215,7 @@ function showMovieCategory1 () {
 
 next1.addEventListener("click", e => {
     let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel1.scrollBy(width, 0);
+        carousel1.scrollBy(width, 0);
     scrollNextPrev1 += width
     console.log("Info scrollNextPrev1", scrollNextPrev1)
     if (scrollNextPrev1 !== 0) {
@@ -228,7 +228,7 @@ next1.addEventListener("click", e => {
 
 prev1.addEventListener("click", e => {
     let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel1.scrollBy(-width, 0);
+        carousel1.scrollBy(-width, 0);
     scrollNextPrev1 -= width
     if (scrollNextPrev1 <= lengthCarousel) {
         prev1.style.display = "none";
@@ -237,19 +237,20 @@ prev1.addEventListener("click", e => {
         next1.style.display = "flex";
     }
 });
+window.addEventListener("resize", e => (width = moviesDetails1.children[0].clientWidth + gap));
 }
 
 
 
 // Catégorie 2 Liste de films d'action
 function showMovieCategory2 () {
-    let moviesDetails2 = document.getElementById('moviesDetails2'),
-        cat = "2",
-        lengthCarousel = moviesDetails2.clientWidth,
-        carousel2 = document.querySelector(".carousel2"),
-        scrollNextPrev2 = moviesDetails2.clientWidth,
-        next2 = document.querySelector('.next2'),
-        prev2 = document.querySelector('.prev2'),
+    let moviesDetails2 = document.getElementById('moviesDetails2');
+        cat = "2";
+        lengthCarousel = moviesDetails2.clientWidth;
+        carousel2 = document.querySelector(".carousel2");
+        scrollNextPrev2 = moviesDetails2.clientWidth;
+        next2 = document.querySelector('.next2');
+        prev2 = document.querySelector('.prev2');
         movieCounter2 = 0; // Compteur de film
         nbrMovies2 = 0; // Nombre total de film
         nbrPages2 = [1, 2, 3];
@@ -278,8 +279,8 @@ function showMovieCategory2 () {
         });
     });
 next2.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel2.scrollBy(width, 0);
+    let width = moviesDetails2.children[0].clientWidth + gap;
+        carousel2.scrollBy(width, 0);
     scrollNextPrev2 += width
     if (scrollNextPrev2 === 0) {
         prev2.style.display = "flex";
@@ -290,8 +291,8 @@ next2.addEventListener("click", e => {
 });
 
 prev2.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel2.scrollBy(-width, 0);
+    let width = moviesDetails2.children[0].clientWidth + gap;
+        carousel2.scrollBy(-width, 0);
     scrollNextPrev2 -= width
     if (scrollNextPrev2 <= lengthCarousel) {
         prev2.style.display = "none";
@@ -300,6 +301,7 @@ prev2.addEventListener("click", e => {
         next2.style.display = "flex";
     }
 });
+window.addEventListener("resize", e => (width = moviesDetails2.children[0].clientWidth + gap));
 }
 
 
@@ -341,8 +343,8 @@ function showMovieCategory3 () {
         });
     });
 next3.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel3.scrollBy(width, 0);
+    let width = moviesDetails3.children[0].clientWidth + gap;
+        carousel3.scrollBy(width, 0);
     scrollNextPrev3 += width
     if (scrollNextPrev3 === 0) {
         prev3.style.display = "flex";
@@ -353,8 +355,8 @@ next3.addEventListener("click", e => {
 });
 
 prev3.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel3.scrollBy(-width, 0);
+    let width = moviesDetails3.children[0].clientWidth + gap;
+        carousel3.scrollBy(-width, 0);
     scrollNextPrev3 -= width
     if (scrollNextPrev3 <= lengthCarousel) {
         prev3.style.display = "none";
@@ -363,6 +365,7 @@ prev3.addEventListener("click", e => {
         next3.style.display = "flex";
     }
 });
+window.addEventListener("resize", e => (width = moviesDetails3.children[0].clientWidth + gap));
 }
 
 // Catégorie 4 Liste de films d'horreur
@@ -396,8 +399,8 @@ function showMovieCategory4 () {
     });
 
 next4.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel4.scrollBy(width, 0);
+    let width = moviesDetails4.children[0].clientWidth + gap;
+        carousel4.scrollBy(width, 0);
     scrollNextPrev4 += width
     if (scrollNextPrev4 === 0) {
         prev4.style.display = "flex";
@@ -409,7 +412,7 @@ next4.addEventListener("click", e => {
 
 prev4.addEventListener("click", e => {
     let width = moviesDetails1.children[0].clientWidth + gap;
-    carousel4.scrollBy(-width, 0);
+        carousel4.scrollBy(-width, 0);
     scrollNextPrev4 -= width
     if (scrollNextPrev4 <= lengthCarousel) {
         prev4.style.display = "none";
@@ -418,15 +421,15 @@ prev4.addEventListener("click", e => {
         next4.style.display = "flex";
     }
 });
+window.addEventListener("resize", e => (width = moviesDetails4.children[0].clientWidth + gap));
 }
 
-window.addEventListener("resize", e => (width = moviesDetails1.children[0].clientWidth + gap));
 
 
-// Fonction qui permet de placer la fenêtre modale selon le film selectionné
+
+// Fonction qui permet de placer la fenêtre modale selon la catégorie du film selectionné
 function centerModal(cat) {
     let modal = document.querySelector('.modal');
-    console.log(cat)
     if (cat === "0") {
         console.log("La valeur de cat et 0");
         modal.style.top = '40%';
@@ -435,17 +438,17 @@ function centerModal(cat) {
         modal.style.top = '130%';
     } else if (cat === "2") {
         console.log("La valeur de cat et 2");
-        modal.style.top = '175%';
+        modal.style.top = '150%';
     } else if (cat === "3" || cat === "4") {
         console.log("La valeur de cat et 3 ou 4");
-        modal.style.top = '200%';
+        modal.style.bottom = '-150%';
     }
 }
 
 // Fonction qui permet de configurer le pictogramme des classements des films
 function configureRankingIcon (typeOfClassification) {
     let rectangleRated = document.querySelector('.rectangle_rated');
-    let rated = document.querySelector('.rated');
+        rated = document.querySelector('.rated');
     if (typeOfClassification === "age") {
         rectangleRated.style.height = "33px";
         rectangleRated.style.width = "38px";
