@@ -431,16 +431,12 @@ window.addEventListener("resize", e => (width = moviesDetails4.children[0].clien
 function centerModal(cat) {
     let modal = document.querySelector('.modal');
     if (cat === "0") {
-        console.log("La valeur de cat et 0");
         modal.style.top = '40%';
     } else if (cat === "1") {
-        console.log("La valeur de cat et 1");
         modal.style.top = '130%';
     } else if (cat === "2") {
-        console.log("La valeur de cat et 2");
         modal.style.top = '150%';
     } else if (cat === "3" || cat === "4") {
-        console.log("La valeur de cat et 3 ou 4");
         modal.style.bottom = '-150%';
     }
 }
