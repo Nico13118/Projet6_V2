@@ -219,7 +219,6 @@ next1.addEventListener("click", e => {
     let width = moviesDetails1.children[0].clientWidth + gap;
         carousel1.scrollBy(width, 0);
     scrollNextPrev1 += width
-    console.log("Info scrollNextPrev1", scrollNextPrev1)
     if (scrollNextPrev1 !== 0) {
         prev1.style.display = "flex";
     }
@@ -261,7 +260,7 @@ function showMovieCategory2 () {
     next2.style.display = "flex";
     pageTitle2.style.display= "flex";
     nbrPages2.forEach(nbrPage2 => {
-    let infoPage2 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage2 + "&sort_by=-year%2C-imdb_score"
+    let infoPage2 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage2 + "&sort_by=-year"
     fetch(infoPage2)
         .then(response => response.json())
         .then(data2 => {
@@ -286,7 +285,7 @@ next2.addEventListener("click", e => {
     let width = moviesDetails2.children[0].clientWidth + gap;
         carousel2.scrollBy(width, 0);
     scrollNextPrev2 += width
-    if (scrollNextPrev2 === 0) {
+    if (scrollNextPrev2 !== 0) {
         prev2.style.display = "flex";
     }
     if (scrollNextPrev2 >= carousel2.scrollWidth) {
@@ -326,7 +325,7 @@ function showMovieCategory3 () {
     next3.style.display = "flex";
     pageTitle3.style.display = "flex";
     nbrPages3.forEach(nbrPage3 => {
-    let infoPage3 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage3 + "&sort_by=-year%2C-imdb_score"
+    let infoPage3 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage3 + "&sort_by=-year"
     fetch(infoPage3)
         .then(response => response.json())
         .then(data3 => {
@@ -352,7 +351,7 @@ next3.addEventListener("click", e => {
     let width = moviesDetails3.children[0].clientWidth + gap;
         carousel3.scrollBy(width, 0);
     scrollNextPrev3 += width
-    if (scrollNextPrev3 === 0) {
+    if (scrollNextPrev3 !== 0) {
         prev3.style.display = "flex";
     }
     if (scrollNextPrev3 >= carousel3.scrollWidth) {
@@ -389,7 +388,7 @@ function showMovieCategory4 () {
     prev4.style.display = "flex";
     next4.style.display = "flex";
     nbrPages4.forEach(nbrPage4 => {
-    let infoPage4 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage4 + "&sort_by=-year%2C-imdb_score";
+    let infoPage4 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage4 + "&sort_by=-year";
     fetch(infoPage4)
         .then(response => response.json())
         .then(data4 => {
@@ -410,7 +409,7 @@ next4.addEventListener("click", e => {
     let width = moviesDetails4.children[0].clientWidth + gap;
         carousel4.scrollBy(width, 0);
     scrollNextPrev4 += width
-    if (scrollNextPrev4 === 0) {
+    if (scrollNextPrev4 !== 0) {
         prev4.style.display = "flex";
     }
     if (scrollNextPrev4 >= carousel4.scrollWidth) {
@@ -443,9 +442,9 @@ function centerModal(cat) {
     } else if (cat === "1") {
         modal.style.top = '130%';
     } else if (cat === "2") {
-        modal.style.top = '150%';
+        modal.style.top = '160%';
     } else if (cat === "3" || cat === "4") {
-        modal.style.bottom = '-150%';
+        modal.style.bottom = '-180%';
     }
 }
 
