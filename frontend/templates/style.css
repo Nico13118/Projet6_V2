@@ -219,6 +219,10 @@ button[type="submit"] {
     width: 100%;
 }
 
+.container_category4 {
+    margin-bottom: 50px;
+}
+
 .category1,
 .category2,
 .category3,
@@ -500,7 +504,7 @@ position: absolute;
 top: 0;
 left: 0;
 width: 100%;
-height: 272%;
+height: 300%;
 background-color: rgba(0, 0, 0, 0.6);
 backdrop-filter: blur(0.8px);
 z-index: 5;
