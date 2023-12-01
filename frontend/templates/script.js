@@ -67,11 +67,10 @@ function showMovie(urlSingleMovie, cat) {
         } else if (infoRated <= 12) {
             infoRated = "-12"
 
-        } else if ((infoRated <= 16) || infoRated === "PG") {
+        } else if ((infoRated <= 16) || infoRated === "PG" || infoRated === "R") {
             infoRated = "-16"
-            configureRankingIcon(typeOfClassification);
 
-        } else if ((infoRated <= 18) || infoRated === "X" || infoRated === "R" || infoRated === "NC-17" || infoRated === "M") {
+        } else if ((infoRated <= 18) || infoRated === "X"  || infoRated === "NC-17" || infoRated === "M") {
             infoRated = "-18"
 
         } else {
@@ -437,6 +436,8 @@ window.addEventListener("resize", e => (width = moviesDetails4.children[0].clien
 // Fonction qui permet de placer la fenêtre modale selon la catégorie du film selectionné
 function centerModal(cat) {
     let modal = document.querySelector('.modal');
+    modal.style.top = "";
+    modal.style.bottom = "";
     if (cat === "0") {
         modal.style.top = '40%';
     } else if (cat === "1") {
