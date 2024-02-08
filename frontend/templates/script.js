@@ -2,8 +2,8 @@
 const gap = 20;
 showBestMovie();
 
-// Affichage du meilleur film
-function showBestMovie () {
+ //Affichage du meilleur film
+function showBestMovie() {
     document.addEventListener('DOMContentLoaded', () => {
         let movieNumber1Area = document.getElementById('movieNumber1Area');
             cat = "0";
@@ -35,7 +35,8 @@ function showBestMovie () {
                     </div>
                 `;
                 movieNumber1Area.appendChild(movieInfo)
-                showMovieCategory1();
+                showMovieAllCategory();
+
             });
         });
     });
@@ -172,265 +173,87 @@ function closeBtn() {
     });
 }
 
-// Catégorie 1 liste de films les mieux notés
-function showMovieCategory1 () {
-    let moviesDetails1 = document.getElementById('moviesDetails1');
-        cat = "1";
-        lengthCarousel = moviesDetails1.clientWidth;
-        carousel1 = document.querySelector(".carousel1");
-        scrollNextPrev1 = moviesDetails1.clientWidth;
-        next1 = document.querySelector('.next1');
-        prev1 = document.querySelector('.prev1');
-        movieCounter1 = 0; // Compteur de film
-        nbrMovies1 = 0; // // Nombre total de film
-        nbrPages1 = [1, 2, 3];
-        pageTitle1 = document.querySelector('.page_title1');
-    prev1.style.display = "flex";
-    next1.style.display = "flex";
-    pageTitle1.style.display = "flex";
-    nbrPages1.forEach(nbrPage1 => {
-    let infoPage1 = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage1 + "&sort_by=-imdb_score%2C-votes";
-    fetch(infoPage1)
-        .then(response => response.json())
+// Fonction qui permet de selectionner l'url selon la catégorie demandée
+function selectUrl(cat, nbrPage) {
+    let urlPage = '';
+    if (cat === "1") {
+        urlPage = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage + "&sort_by=-imdb_score%2C-votes";
+    }
+    if (cat === "2") {
+        urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage + "&sort_by=-year";
+    }
+    if (cat === "3") {
+        urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage + "&sort_by=-year";
+    }
+    if (cat === "4") {
+        urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage + "&sort_by=-year";
+    }
+    return urlPage;
+}
 
-        .then(data1 => {
-            let movies1 = data1.results;  // La liste des films se trouve dans data1.results
-            movies1.forEach(movie1 => {
-                movieCounter1 += 1
-                // Pour chaque film, un élément est créer pour affichez l'image'
-                let movieInfo1 = document.createElement('div');
-                movieInfo1.innerHTML = `
+// Fonction qui gère la requête fetch pour les 4 catégories
+async function getFetch(urlPage) {
+    try {
+        let response = await fetch(urlPage);
+        if (!response.ok) {
+            throw new Error('Erreur')
+        }
+        let data = await response.json();
+        let movies = data.results;
+        return movies;
+    } catch (error) {
+        console.error('Erreur requête fetch :', error);
+        return null;
+    }
+}
+
+// Fonction qui gère l'affichage des 4 catégories
+async function showMovieAllCategory() {
+    let i = 1;
+    let nbrPages = [1, 2, 3];
+    while (i <= 4) {
+        let cat = i.toString();
+            movieDetailId = 'moviesDetails' + cat;
+            selectCarousel = '.carousel' + cat;
+            selectNext = '.next' + cat;
+            selectPrev = '.prev' + cat;
+            selectPageTitle = '.page_title' + cat;
+            selectCategory = '.category' + cat;
+            selectMovieDetailId = document.getElementById(movieDetailId)
+            lengthCarousel = selectMovieDetailId.clientWidth;
+            carousel = document.querySelector(selectCarousel)
+            scrollNextPrev = selectMovieDetailId.clientWidth;
+            next = document.querySelector(selectNext)
+            prev = document.querySelector(selectPrev)
+            pageTitle = document.querySelector(selectPageTitle)
+            movieCounter = 0;
+            nbrMovies = 0;
+
+        prev.style.display = 'flex';
+        next.style.display = 'flex';
+        pageTitle.style.display = 'flex';
+
+        for (let nbrPage of nbrPages) {
+            let urlPage = selectUrl(cat, nbrPage);
+            let movies = await getFetch(urlPage);
+
+            movies.forEach(movie => {
+                movieCounter++;
+                let movieInfo = document.createElement('div');
+                movieInfo.innerHTML = `
                     <a href="javascript:void(0);">
-                    <img class="category1" src="${movie1.image_url}" alt="${movie1.title}" onclick="showMovie('${movie1.url}', '${cat}')">
+                    <img class="${selectCategory}" src="${movie.image_url}" alt="${movie.title}" onclick="showMovie('${movie.url}', '${cat}')">
                     </a>
                 `;
-                moviesDetails1.appendChild(movieInfo1);
-                nbrMovies1 = movies1.length * nbrPages1.length;
-                if (movieCounter1 === nbrMovies1) {
-                    showMovieCategory2();
+                selectMovieDetailId.appendChild(movieInfo);
+                nbrMovies = movies.length * nbrPages.length
+                if (movieCounter === nbrMovies) {
+                    i++;
                 }
             });
-        });
-
-    });
-
-next1.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-        carousel1.scrollBy(width, 0);
-    scrollNextPrev1 += width
-    if (scrollNextPrev1 !== 0) {
-        prev1.style.display = "flex";
+        }
     }
-    if (scrollNextPrev1 >= carousel1.scrollWidth) {
-        next1.style.display = "none";
-    }
-});
-
-prev1.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-        carousel1.scrollBy(-width, 0);
-    scrollNextPrev1 -= width
-    if (scrollNextPrev1 <= lengthCarousel) {
-        prev1.style.display = "none";
-    }
-    if (scrollNextPrev1 < carousel1.scrollWidth) {
-        next1.style.display = "flex";
-    }
-});
-window.addEventListener("resize", e => (width = moviesDetails1.children[0].clientWidth + gap));
 }
-
-
-
-// Catégorie 2 Liste de films d'action
-function showMovieCategory2 () {
-    let moviesDetails2 = document.getElementById('moviesDetails2');
-        cat = "2";
-        lengthCarousel = moviesDetails2.clientWidth;
-        carousel2 = document.querySelector(".carousel2");
-        scrollNextPrev2 = moviesDetails2.clientWidth;
-        next2 = document.querySelector('.next2');
-        prev2 = document.querySelector('.prev2');
-        movieCounter2 = 0; // Compteur de film
-        nbrMovies2 = 0; // Nombre total de film
-        nbrPages2 = [1, 2, 3];
-        pageTitle2 = document.querySelector('.page_title2');
-    prev2.style.display = "flex";
-    next2.style.display = "flex";
-    pageTitle2.style.display= "flex";
-    nbrPages2.forEach(nbrPage2 => {
-    let infoPage2 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage2 + "&sort_by=-year"
-    fetch(infoPage2)
-        .then(response => response.json())
-        .then(data2 => {
-            let movies2 = data2.results;
-            movies2.forEach(movie2 => {
-                movieCounter2 += 1
-                let movieInfo2 = document.createElement('div');
-                movieInfo2.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="category2" src="${movie2.image_url}" alt="${movie2.title}" onclick="showMovie('${movie2.url}', '${cat}')">
-                    </a>
-                `;
-                moviesDetails2.appendChild(movieInfo2)
-                nbrMovies2 = movies2.length * nbrPages2.length;
-                if (movieCounter2 === nbrMovies2) {
-                    showMovieCategory3();
-                }
-            });
-        });
-    });
-next2.addEventListener("click", e => {
-    let width = moviesDetails2.children[0].clientWidth + gap;
-        carousel2.scrollBy(width, 0);
-    scrollNextPrev2 += width
-    if (scrollNextPrev2 !== 0) {
-        prev2.style.display = "flex";
-    }
-    if (scrollNextPrev2 >= carousel2.scrollWidth) {
-        next2.style.display = "none";
-    }
-});
-
-prev2.addEventListener("click", e => {
-    let width = moviesDetails2.children[0].clientWidth + gap;
-        carousel2.scrollBy(-width, 0);
-    scrollNextPrev2 -= width
-    if (scrollNextPrev2 <= lengthCarousel) {
-        prev2.style.display = "none";
-    }
-    if (scrollNextPrev2 < carousel2.scrollWidth) {
-        next2.style.display = "flex";
-    }
-});
-window.addEventListener("resize", e => (width = moviesDetails2.children[0].clientWidth + gap));
-}
-
-
-// Catégorie 3 Liste de films Thriller
-function showMovieCategory3 () {
-    let moviesDetails3 = document.getElementById('moviesDetails3');
-        cat = "3";
-        lengthCarousel = moviesDetails3.clientWidth;
-        carousel3 = document.querySelector(".carousel3");
-        scrollNextPrev3 = moviesDetails3.clientWidth;
-        next3 = document.querySelector('.next3');
-        prev3 = document.querySelector('.prev3');
-        movieCounter3 = 0; // Compteur de film
-        nbrMovies3 = 0; // Total nombre de film
-        nbrPages3 = [1, 2, 3];
-        pageTitle3 = document.querySelector('.page_title3');
-    prev3.style.display = "flex";
-    next3.style.display = "flex";
-    pageTitle3.style.display = "flex";
-    nbrPages3.forEach(nbrPage3 => {
-    let infoPage3 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage3 + "&sort_by=-year"
-    fetch(infoPage3)
-        .then(response => response.json())
-        .then(data3 => {
-            let movies3 = data3.results;  // La liste des films se trouve dans data3.results
-            movies3.forEach(movie3 => {
-                movieCounter3 += 1
-                // Pour chaque film, un élément est créer pour affichez l'image'
-                let movieInfo3 = document.createElement('div');
-                movieInfo3.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="category3" src="${movie3.image_url}" alt="${movie3.title}" onclick="showMovie('${movie3.url}', '${cat}')">
-                    </a>
-                `;
-                moviesDetails3.appendChild(movieInfo3);
-                nbrMovies3 = movies3.length * nbrPages3.length;
-                if (movieCounter3 === nbrMovies3) {
-                    showMovieCategory4();
-                }
-            });
-        });
-    });
-next3.addEventListener("click", e => {
-    let width = moviesDetails3.children[0].clientWidth + gap;
-        carousel3.scrollBy(width, 0);
-    scrollNextPrev3 += width
-    if (scrollNextPrev3 !== 0) {
-        prev3.style.display = "flex";
-    }
-    if (scrollNextPrev3 >= carousel3.scrollWidth) {
-        next3.style.display = "none";
-    }
-});
-
-prev3.addEventListener("click", e => {
-    let width = moviesDetails3.children[0].clientWidth + gap;
-        carousel3.scrollBy(-width, 0);
-    scrollNextPrev3 -= width
-    if (scrollNextPrev3 <= lengthCarousel) {
-        prev3.style.display = "none";
-    }
-    if (scrollNextPrev3 < carousel3.scrollWidth) {
-        next3.style.display = "flex";
-    }
-});
-window.addEventListener("resize", e => (width = moviesDetails3.children[0].clientWidth + gap));
-}
-
-// Catégorie 4 Liste de films d'horreur
-function showMovieCategory4 () {
-    let moviesDetails4 = document.getElementById('moviesDetails4');
-        cat = "4";
-        lengthCarousel = moviesDetails4.clientWidth;
-        carousel4 = document.querySelector(".carousel4");
-        scrollNextPrev4 = moviesDetails4.clientWidth;
-        next4 = document.querySelector('.next4');
-        prev4 = document.querySelector('.prev4');
-        pageTitle4 = document.querySelector('.page_title4');
-        nbrPages4 = [1, 2, 3];
-    pageTitle4.style.display = "flex";
-    prev4.style.display = "flex";
-    next4.style.display = "flex";
-    nbrPages4.forEach(nbrPage4 => {
-    let infoPage4 = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage4 + "&sort_by=-year";
-    fetch(infoPage4)
-        .then(response => response.json())
-        .then(data4 => {
-            let movies4 = data4.results;
-            movies4.forEach(movie4 => {
-                let movieInfo4 = document.createElement('div');
-                movieInfo4.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="category4" src="${movie4.image_url}" alt="${movie4.title}" onclick="showMovie('${movie4.url}', '${cat}')">
-                    </a>
-                `;
-                moviesDetails4.appendChild(movieInfo4)
-            });
-        });
-    });
-
-next4.addEventListener("click", e => {
-    let width = moviesDetails4.children[0].clientWidth + gap;
-        carousel4.scrollBy(width, 0);
-    scrollNextPrev4 += width
-    if (scrollNextPrev4 !== 0) {
-        prev4.style.display = "flex";
-    }
-    if (scrollNextPrev4 >= carousel4.scrollWidth) {
-        next4.style.display = "none";
-    }
-});
-
-prev4.addEventListener("click", e => {
-    let width = moviesDetails1.children[0].clientWidth + gap;
-        carousel4.scrollBy(-width, 0);
-    scrollNextPrev4 -= width
-    if (scrollNextPrev4 <= lengthCarousel) {
-        prev4.style.display = "none";
-    }
-    if (scrollNextPrev4 < carousel4.scrollWidth) {
-        next4.style.display = "flex";
-    }
-});
-window.addEventListener("resize", e => (width = moviesDetails4.children[0].clientWidth + gap));
-}
-
-
 
 
 // Fonction qui permet de placer la fenêtre modale selon la catégorie du film selectionné
@@ -449,7 +272,7 @@ function centerModal(cat) {
     }
 }
 
-// Fonction qui permet de configurer le pictogramme des classements des films
+// Fonction qui permet de configurer le pictogramme des classements de films
 function configureRankingIcon (typeOfClassification) {
     let rectangleRated = document.querySelector('.rectangle_rated');
         rated = document.querySelector('.rated');
