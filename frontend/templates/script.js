@@ -175,20 +175,25 @@ function closeBtn() {
 
 // Fonction qui permet de selectionner l'url selon la catégorie demandée
 function selectUrl(cat, nbrPage) {
-    let urlPage = '';
+    let urlPage = "";
+    let categoryName = "";
+    const listCategory = ["Action", "Thriller", "Horror"];
     if (cat === "1") {
         urlPage = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage + "&sort_by=-imdb_score%2C-votes";
+        return urlPage;
+    } else {
+        if (cat === "2") {
+            categoryName = listCategory[0];
     }
-    if (cat === "2") {
-        urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Action&page=" + nbrPage + "&sort_by=-year";
+        if (cat === "3") {
+            categoryName = listCategory[1];
     }
-    if (cat === "3") {
-        urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Thriller&page=" + nbrPage + "&sort_by=-year";
+        if (cat === "4") {
+            categoryName = listCategory[2];
     }
-    if (cat === "4") {
-        urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=Horror&page=" + nbrPage + "&sort_by=-year";
-    }
+    urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=" + categoryName + "&page=" + nbrPage + "&sort_by=-year";
     return urlPage;
+    }
 }
 
 // Fonction qui gère la requête fetch pour les 4 catégories
