@@ -1,5 +1,7 @@
 //script.js
 const gap = 20;
+let scrollNextPrev = 0;
+let scrollNextPrev1 = 0;
 showBestMovie();
 
  //Affichage du meilleur film
@@ -174,10 +176,12 @@ function closeBtn() {
 }
 
 // Fonction qui permet de selectionner l'url selon la catégorie demandée
+// Romance, Biography, Crime, Drama, History, Adventure, Fantasy, War, Mystery, Horror, Western, Comedy, Family
+// Action, Sci-Fi, Thriller, Sport, Animation, Musical, Music, Film-Noir, Adult, Documentary, Reality-TV, News
 function selectUrl(cat, nbrPage) {
     let urlPage = "";
     let categoryName = "";
-    const listCategory = ["Action", "Thriller", "Horror"];
+    const listCategory = ["War", "Adventure", "Horror"];
     if (cat === "1") {
         urlPage = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage + "&sort_by=-imdb_score%2C-votes";
         return urlPage;
@@ -215,28 +219,27 @@ async function getFetch(urlPage) {
 // Fonction qui gère l'affichage des 4 catégories
 async function showMovieAllCategory() {
     let i = 1;
-    let nbrPages = [1, 2, 3];
+
+    const nbrPages = [1, 2, 3];
     while (i <= 4) {
         let cat = i.toString();
-            movieDetailId = 'moviesDetails' + cat;
-            selectCarousel = '.carousel' + cat;
-            selectNext = '.next' + cat;
-            selectPrev = '.prev' + cat;
-            selectPageTitle = '.page_title' + cat;
-            selectCategory = '.category' + cat;
-            selectMovieDetailId = document.getElementById(movieDetailId)
-            lengthCarousel = selectMovieDetailId.clientWidth;
-            carousel = document.querySelector(selectCarousel)
-            scrollNextPrev = selectMovieDetailId.clientWidth;
-            next = document.querySelector(selectNext)
-            prev = document.querySelector(selectPrev)
-            pageTitle = document.querySelector(selectPageTitle)
+            idMoviesDetails = 'moviesDetails' + cat;
+            classCarousel = '.carousel' + cat;
+            classtNext = '.next' + cat;
+            classPrev = '.prev' + cat;
+            classPageTitle = '.page_title' + cat;
+            classCategory = '.category' + cat;
+            selectIdMoviesDetails = document.getElementById(idMoviesDetails);
+            selectNext = document.querySelector(classtNext);
+            selectPrev = document.querySelector(classPrev);
+            selectPageTitle = document.querySelector(classPageTitle);
             movieCounter = 0;
             nbrMovies = 0;
-
-        prev.style.display = 'flex';
-        next.style.display = 'flex';
-        pageTitle.style.display = 'flex';
+        scrollNextPrev = selectIdMoviesDetails.clientWidth; // Variable global
+        scrollNextPrev1 = scrollNextPrev; // Variable global
+        selectPrev.style.display = 'flex'; // Permet d'activer l'affichage du bouton prev
+        selectNext.style.display = 'flex'; // Permet d'activer l'affichage du bouton next
+        selectPageTitle.style.display = 'flex'; // Permet d'afficher le titre de la catégorie
 
         for (let nbrPage of nbrPages) {
             let urlPage = selectUrl(cat, nbrPage);
@@ -247,10 +250,10 @@ async function showMovieAllCategory() {
                 let movieInfo = document.createElement('div');
                 movieInfo.innerHTML = `
                     <a href="javascript:void(0);">
-                    <img class="${selectCategory}" src="${movie.image_url}" alt="${movie.title}" onclick="showMovie('${movie.url}', '${cat}')">
+                    <img class="${classCategory}" src="${movie.image_url}" alt="${movie.title}" onclick="showMovie('${movie.url}', '${cat}')">
                     </a>
                 `;
-                selectMovieDetailId.appendChild(movieInfo);
+                selectIdMoviesDetails.appendChild(movieInfo);
                 nbrMovies = movies.length * nbrPages.length
                 if (movieCounter === nbrMovies) {
                     i++;
@@ -260,6 +263,43 @@ async function showMovieAllCategory() {
     }
 }
 
+function getNextPrev(classNextPrev, moviesDetails, classCarousel) {
+    let selectIdMoviesDetails = document.getElementById(moviesDetails);
+        selectLengthCarousel = selectIdMoviesDetails.clientWidth;
+        selectCarousel = document.querySelector(classCarousel);
+        selectNextPrev = document.querySelector(classNextPrev);
+        next = selectNextPrev.classList[0];
+        prev = selectNextPrev.classList[0];
+        totalCarousel = selectCarousel.scrollWidth + gap;
+
+    if (next === 'next1') {
+        let width = selectIdMoviesDetails.children[0].clientWidth + gap;
+            selectNext = selectNextPrev;
+            selectCarousel.scrollBy(width, 0);
+        console.log('width =', width);
+        console.log('totalCarousel', totalCarousel)
+        scrollNextPrev1 += width;
+        console.log('scrollNextPrev1 =', scrollNextPrev1);
+        if (scrollNextPrev1 > selectLengthCarousel) {
+            selectPrev.style.display = "flex";
+        }
+        if (scrollNextPrev1 >= totalCarousel) {
+            selectNextPrev.style.display = "none";
+        }
+    }
+    if (prev === 'prev1') {
+        let width = selectIdMoviesDetails.children[0].clientWidth + gap;
+            selectPrev = selectNextPrev;
+            selectCarousel.scrollBy(-width, 0);
+        scrollNextPrev1 -= width;
+        if (scrollNextPrev1 <= selectLengthCarousel) {
+            selectNextPrev.style.display = "none";
+        }
+        if (scrollNextPrev < totalCarousel) {
+            selectNext.style.display = "flex";
+        }
+    }
+}
 
 // Fonction qui permet de placer la fenêtre modale selon la catégorie du film selectionné
 function centerModal(cat) {
@@ -301,3 +341,5 @@ function configureRankingIcon (typeOfClassification) {
         rated.style.marginRight = "auto";
     }
 }
+
+
