@@ -214,21 +214,13 @@ button[type="submit"] {
 .container_category2,
 .container_category3,
 .container_category4 {
-    max-width: 1575px;
+    max-width: 1750px;
     position: relative;
     width: 100%;
 }
 
 .container_category4 {
     margin-bottom: 50px;
-}
-
-.category1,
-.category2,
-.category3,
-.category4 {
-    width: 205px;
-    height: auto;
 }
 
 #moviesDetails1,
