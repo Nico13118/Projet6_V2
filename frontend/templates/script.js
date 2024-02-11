@@ -2,6 +2,9 @@
 const gap = 20;
 let scrollNextPrev = 0;
 let scrollNextPrev1 = 0;
+let scrollNextPrev2 = 0;
+let scrollNextPrev3 = 0;
+let scrollNextPrev4 = 0;
 showBestMovie();
 
  //Affichage du meilleur film
@@ -237,9 +240,14 @@ async function showMovieAllCategory() {
             nbrMovies = 0;
         scrollNextPrev = selectIdMoviesDetails.clientWidth; // Variable global
         scrollNextPrev1 = scrollNextPrev; // Variable global
+        scrollNextPrev2 = scrollNextPrev; // Variable global
+        scrollNextPrev3 = scrollNextPrev; // Variable global
+        scrollNextPrev4 = scrollNextPrev; // Variable global
         selectPrev.style.display = 'flex'; // Permet d'activer l'affichage du bouton prev
         selectNext.style.display = 'flex'; // Permet d'activer l'affichage du bouton next
         selectPageTitle.style.display = 'flex'; // Permet d'afficher le titre de la catégorie
+//        img.classCarousel.style.width = "230px";
+//        classCarousel.style.height = "auto";
 
         for (let nbrPage of nbrPages) {
             let urlPage = selectUrl(cat, nbrPage);
@@ -250,7 +258,7 @@ async function showMovieAllCategory() {
                 let movieInfo = document.createElement('div');
                 movieInfo.innerHTML = `
                     <a href="javascript:void(0);">
-                    <img class="${classCategory}" src="${movie.image_url}" alt="${movie.title}" onclick="showMovie('${movie.url}', '${cat}')">
+                    <img class="${classCategory}" src="${movie.image_url}" alt="${movie.title}" onclick="showMovie('${movie.url}', '${cat}')" style="width: 230px";>
                     </a>
                 `;
                 selectIdMoviesDetails.appendChild(movieInfo);
@@ -271,31 +279,75 @@ function getNextPrev(classNextPrev, moviesDetails, classCarousel) {
         next = selectNextPrev.classList[0];
         prev = selectNextPrev.classList[0];
         totalCarousel = selectCarousel.scrollWidth + gap;
-
-    if (next === 'next1') {
+        infoscrollNextPrev = 0;
+    if (next === 'next1' || next === 'next2' || next === 'next3' || next === 'next4') {
         let width = selectIdMoviesDetails.children[0].clientWidth + gap;
             selectNext = selectNextPrev;
             selectCarousel.scrollBy(width, 0);
-        console.log('width =', width);
-        console.log('totalCarousel', totalCarousel)
-        scrollNextPrev1 += width;
-        console.log('scrollNextPrev1 =', scrollNextPrev1);
-        if (scrollNextPrev1 > selectLengthCarousel) {
+        if (next === 'next1') {
+            if (scrollNextPrev1 < totalCarousel) {
+                scrollNextPrev1 += width;
+                infoscrollNextPrev = scrollNextPrev1;
+            }
+        }
+        if (next === 'next2') {
+            if (scrollNextPrev2 < totalCarousel) {
+                scrollNextPrev2 += width;
+                infoscrollNextPrev = scrollNextPrev2;
+            }
+        }
+        if (next === 'next3') {
+            if (scrollNextPrev3 < totalCarousel) {
+                scrollNextPrev3 += width;
+                infoscrollNextPrev = scrollNextPrev3;
+            }
+        }
+        if (next === 'next4') {
+            if (scrollNextPrev4 < totalCarousel) {
+                scrollNextPrev4 += width;
+                infoscrollNextPrev = scrollNextPrev4;
+            }
+        }
+        if (infoscrollNextPrev > selectLengthCarousel) {
             selectPrev.style.display = "flex";
         }
-        if (scrollNextPrev1 >= totalCarousel) {
+        if (infoscrollNextPrev >= totalCarousel) {
             selectNextPrev.style.display = "none";
         }
     }
-    if (prev === 'prev1') {
+
+    if (prev === 'prev1' || prev === 'prev2' || prev === 'prev3' || prev === 'prev4') {
         let width = selectIdMoviesDetails.children[0].clientWidth + gap;
             selectPrev = selectNextPrev;
             selectCarousel.scrollBy(-width, 0);
-        scrollNextPrev1 -= width;
-        if (scrollNextPrev1 <= selectLengthCarousel) {
+        if (prev === 'prev1') {
+            if (scrollNextPrev1 > selectLengthCarousel) {
+                scrollNextPrev1 -= width;
+                infoscrollNextPrev = scrollNextPrev1;
+            }
+        }
+        if (prev === 'prev2') {
+            if (scrollNextPrev2 > selectLengthCarousel) {
+                scrollNextPrev2 -= width;
+                infoscrollNextPrev = scrollNextPrev2;
+            }
+        }
+        if (prev === 'prev3') {
+            if (scrollNextPrev3 > selectLengthCarousel) {
+                scrollNextPrev3 -= width;
+                infoscrollNextPrev = scrollNextPrev3;
+            }
+        }
+        if (prev === 'prev4') {
+            if (scrollNextPrev4 > selectLengthCarousel) {
+                scrollNextPrev4 -= width;
+                infoscrollNextPrev = scrollNextPrev4;
+            }
+        }
+        if (infoscrollNextPrev <= selectLengthCarousel) {
             selectNextPrev.style.display = "none";
         }
-        if (scrollNextPrev < totalCarousel) {
+        if (infoscrollNextPrev < totalCarousel) {
             selectNext.style.display = "flex";
         }
     }
