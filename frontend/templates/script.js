@@ -246,8 +246,6 @@ async function showMovieAllCategory() {
         selectPrev.style.display = 'flex'; // Permet d'activer l'affichage du bouton prev
         selectNext.style.display = 'flex'; // Permet d'activer l'affichage du bouton next
         selectPageTitle.style.display = 'flex'; // Permet d'afficher le titre de la catégorie
-//        img.classCarousel.style.width = "230px";
-//        classCarousel.style.height = "auto";
 
         for (let nbrPage of nbrPages) {
             let urlPage = selectUrl(cat, nbrPage);
@@ -308,12 +306,6 @@ function getNextPrev(classNextPrev, moviesDetails, classCarousel) {
                 infoscrollNextPrev = scrollNextPrev4;
             }
         }
-        if (infoscrollNextPrev > selectLengthCarousel) {
-            selectPrev.style.display = "flex";
-        }
-        if (infoscrollNextPrev >= totalCarousel) {
-            selectNextPrev.style.display = "none";
-        }
     }
 
     if (prev === 'prev1' || prev === 'prev2' || prev === 'prev3' || prev === 'prev4') {
@@ -343,12 +335,6 @@ function getNextPrev(classNextPrev, moviesDetails, classCarousel) {
                 scrollNextPrev4 -= width;
                 infoscrollNextPrev = scrollNextPrev4;
             }
-        }
-        if (infoscrollNextPrev <= selectLengthCarousel) {
-            selectNextPrev.style.display = "none";
-        }
-        if (infoscrollNextPrev < totalCarousel) {
-            selectNext.style.display = "flex";
         }
     }
 }
