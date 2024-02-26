@@ -11,11 +11,13 @@
     <link rel="preconnect" href="https://m.media-amazon.com">
 </head>
 <body>
+<!-- En-tête de la page -->
 <div class="top_headband">
     <div class="logo_area">
         <div class="logo"></div>
     </div>
 
+    <!-- zone du menu -->
     <nav class="menu_area">
         <a href="" class="menu_button" title="Accueil">Accueil</a>
         <a href="" class="menu_button" title="Séries">Séries</a>
@@ -24,6 +26,7 @@
         <a href="" class="menu_button" title="Ma liste">Ma liste</a>
     </nav>
 
+    <!-- zone de recherche de film -->
     <div class="search_area">
         <label for="search_movie">Rechercher</label>
         <input type="search" name="search_movie" maxlength="50" class="search_rectangle" required id="search_movie">
@@ -33,12 +36,15 @@
             </svg>
         </button>
     </div>
-    
+
+    <!-- Zone notifications -->
     <div class="notification_area">
         <a href="" class="notification" title="Notification">
             <svg class="notification"></svg>
         </a>
     </div>
+
+    <!-- zone du profil -->
     <div class="profile_area">
         <a href="" class="profile" title="Profil">
             <svg class="profile"></svg>
@@ -46,16 +52,23 @@
     </div>
 
 </div>
+
+<!-- overlay hidden: Affichage d'un voile transparent -->
 <div class="overlay hidden"></div>
+
+<!-- zone qui affiche les informations d'un film dans une fenêtre modal -->
 <div id="myModal" class="modal"></div>
 
+<!-- zone d'affichage du meilleur film -->
 <div id="movieNumber1Area"></div>
 
+<!-- zone qui affiche la liste des films de la première catégorie -->
 <div class="container_category1">
     <h1 class="page_title1">Films les mieux notés</h1>
     <div class="carousel1">
     <div id="moviesDetails1"></div>
     </div>
+
     <a href="javascript:void(0);">
         <button class="prev1" >
             <svg class="button_prev" onclick="getNextPrev('.prev1', 'moviesDetails1', '.carousel1')"></svg>
@@ -69,11 +82,13 @@
     </a>
 </div>
 
+<!-- zone qui affiche la liste des films de la deuxième catégorie -->
 <div class="container_category2">
     <h1 class="page_title2">Guerre</h1>
     <div class="carousel2">
         <div id="moviesDetails2"></div>
     </div>
+
     <a href="javascript:void(0);">
         <button class="prev2" >
             <svg class="button_prev" onclick="getNextPrev('.prev2', 'moviesDetails2', '.carousel2')"></svg>
@@ -87,11 +102,13 @@
     </a>
 </div>
 
+<!-- zone qui affiche la liste des films de la troisième catégorie -->
 <div class="container_category3">
     <h1 class="page_title3">Aventure</h1>
     <div class="carousel3">
         <div id="moviesDetails3"></div>
     </div>
+
     <a href="javascript:void(0);">
         <button class="prev3" >
             <svg class="button_prev" onclick="getNextPrev('.prev3', 'moviesDetails3', '.carousel3')"></svg>
@@ -105,11 +122,13 @@
     </a>
 </div>
 
+<!-- zone qui affiche la liste des films de la quatrième catégorie -->
 <div class="container_category4">
     <h1 class="page_title4">Horreur</h1>
     <div class="carousel4">
         <div id="moviesDetails4"></div>
     </div>
+    
     <a href="javascript:void(0);">
         <button class="prev4" >
             <svg class="button_prev" onclick="getNextPrev('.prev4', 'moviesDetails4', '.carousel4')"></svg>
