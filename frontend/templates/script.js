@@ -19,7 +19,7 @@ function showBestMovie() {
             let bestMovieData = movies.results; // Ma liste de film selectionné se trouve dans le champ "results"
             // Selection du meilleur film
                 selectMovie = bestMovieData[0];
-            // Selection de l'id du film
+            // Selection de l'URL du film
                 urlSingleMovie = selectMovie.url;
         fetch(urlSingleMovie)
             .then(response => response.json())
