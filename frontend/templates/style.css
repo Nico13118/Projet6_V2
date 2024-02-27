@@ -10,7 +10,7 @@ input[type="search" i]::-webkit-color-swatch {
 */
 
 body {
-    margin: 0px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,6 +145,10 @@ button[type="submit"] {
     text-decoration: none;
 }
 
+.menu_button:hover {
+    color: #082BF1;
+}
+
 /* Zone meilleur film*/
 #movieNumber1Area{
     position: relative;
@@ -210,7 +214,7 @@ button[type="submit"] {
 .container_category4 {
     max-width: 1750px;
     position: relative;
-    width: 100%;
+    width: auto;
 }
 
 .container_category4 {
@@ -330,7 +334,7 @@ svg.button_prev {
     display: flex;
     background-color: transparent;
     margin: auto;
-    padding: 4px;
+    /*padding: 4px;*/
     border-radius: 5px;
     padding-bottom: 0px;
     padding-top: 0px;
@@ -391,12 +395,15 @@ svg.button_prev {
 }
 
 .close:hover {
-  color: #082BF1;
+    color: #FFFFFF;
+    background-color: #082BF1;
 }
 
 .container1 {
     position: relative;
-    background-color: #082C78;
+    /*background-color: #082C78;*/
+    background-color: #424242;
+
     display: grid;
     grid-template-areas: "R1 R2";
     border: 2px solid #FFFFFF;
@@ -474,12 +481,33 @@ svg.button_prev {
     background-color: #FFFFFF;
 
 }
+.container_playerMovie2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.playMovie2 {
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 40px;
+    font-size: 25px;
+    background-color: #FFFFFF;
+}
 
 .playMovie:hover,
 .moreInformation:hover {
+    color: #FFFFFF;
     border: 1px solid #082BF1;
     background-color: #082BF1;
 }
+
+.playMovie2:hover {
+    color: #FFFFFF;
+    background-color: #082BF1;
+}
+
 
 .hidden {
 display: none;
