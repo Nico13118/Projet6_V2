@@ -155,6 +155,9 @@ function showMovie(urlSingleMovie, cat) {
                         <div class="worldwide_gross_income">
                             <span>Box office mondial : ${infoWorldwildGrossIncome}</span>
                         </div>
+                        <div class="container_playerMovie2">
+                            <a class="playMovie2">Regarder le film</a>
+                        </div>
                     </div>
                 </div>
 
