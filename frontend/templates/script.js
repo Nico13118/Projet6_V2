@@ -238,11 +238,7 @@ async function showMovieAllCategory() {
             selectPageTitle = document.querySelector(classPageTitle);
             movieCounter = 0;
             nbrMovies = 0;
-        scrollNextPrev = selectIdMoviesDetails.clientWidth; // Variable global
-        scrollNextPrev1 = scrollNextPrev; // Variable global
-        scrollNextPrev2 = scrollNextPrev; // Variable global
-        scrollNextPrev3 = scrollNextPrev; // Variable global
-        scrollNextPrev4 = scrollNextPrev; // Variable global
+
         selectPrev.style.display = 'flex'; // Permet d'activer l'affichage du bouton prev
         selectNext.style.display = 'flex'; // Permet d'activer l'affichage du bouton next
         selectPageTitle.style.display = 'flex'; // Permet d'afficher le titre de la catégorie
@@ -267,6 +263,11 @@ async function showMovieAllCategory() {
             });
         }
     }
+    let scrollNextPrev = selectIdMoviesDetails.clientWidth; // Variable global
+        scrollNextPrev1 = scrollNextPrev; // Variable global
+        scrollNextPrev2 = scrollNextPrev; // Variable global
+        scrollNextPrev3 = scrollNextPrev; // Variable global
+        scrollNextPrev4 = scrollNextPrev; // Variable global
 }
 
 function getNextPrev(classNextPrev, moviesDetails, classCarousel) {
