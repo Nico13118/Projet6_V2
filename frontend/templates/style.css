@@ -416,7 +416,8 @@ svg.button_prev {
 .R5N1,
 .R5N2,
 .R6,
-.R7 {
+.R7,
+.R8 {
     width: auto;
     height: auto;
 }
@@ -434,7 +435,8 @@ svg.button_prev {
     "R4"
     "R5"
     "R6"
-    "R7";
+    "R7"
+    "R8";
     grid-row-gap: 10px;
 }
 
@@ -452,6 +454,14 @@ svg.button_prev {
     "genre";
     grid-template-columns: 900px;
     grid-column-gap: 0px;
+}
+
+.R8 {
+    display: grid;
+    grid-template-areas:
+    "container_playerMovie2 container_addFavorites";
+    grid-template-columns: auto auto;
+    /*grid-column-gap: 0px;*/
 }
 
 /* Bouton plus d'informations */
@@ -483,16 +493,26 @@ svg.button_prev {
 }
 .container_playerMovie2 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container_addFavorites {
+    display: flex;
+    margin-left: 5%;
     margin-top: 10px;
     margin-bottom: 10px;
 
 }
-.playMovie2 {
+.playMovie2,
+.addFavorites {
     cursor: pointer;
     padding: 15px;
     border-radius: 40px;
     font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: #FFFFFF;
 }
 
@@ -503,7 +523,8 @@ svg.button_prev {
     background-color: #082BF1;
 }
 
-.playMovie2:hover {
+.playMovie2:hover,
+.addFavorites:hover {
     color: #FFFFFF;
     background-color: #082BF1;
 }
