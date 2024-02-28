@@ -8,20 +8,20 @@ let scrollNextPrev4 = 0;
 showBestMovie();
 
  //Affichage du meilleur film
-function showBestMovie() {
-    document.addEventListener('DOMContentLoaded', () => {
+async function showBestMovie() {
+    document.addEventListener('DOMContentLoaded', async () => {
         let movieNumber1Area = document.getElementById('movieNumber1Area');
             cat = "0";
             bestImage = "https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/6116cc072824771992111acec7ba236e177d3e1975b87fa574dffb64f49a5b94._RI_TTW_SX720_FMjpg_.jpg";
-        fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
+            await fetch('http://127.0.0.1:8000/api/v1/titles/?sort_by=-imdb_score,-votes')
         .then(response => response.json())
-        .then(movies => {
+        .then(async movies => {
             let bestMovieData = movies.results; // Ma liste de film selectionné se trouve dans le champ "results"
             // Selection du meilleur film
                 selectMovie = bestMovieData[0];
             // Selection de l'URL du film
                 urlSingleMovie = selectMovie.url;
-        fetch(urlSingleMovie)
+        await fetch(urlSingleMovie)
             .then(response => response.json())
             .then(movie => {
                 let movieInfo = document.createElement('div');
