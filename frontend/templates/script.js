@@ -214,18 +214,10 @@ function selectUrl(cat, nbrPage) {
 
 // Fonction qui gère la requête fetch pour les 4 catégories
 async function getFetch(urlPage) {
-    try {
-        let response = await fetch(urlPage);
-        if (!response.ok) {
-            throw new Error('Erreur')
-        }
-        let data = await response.json();
-        let movies = data.results;
-        return movies;
-    } catch (error) {
-        console.error('Erreur requête fetch :', error);
-        return null;
-    }
+    let response = await fetch(urlPage);
+    let data = await response.json();
+    let movies = data.results;
+    return movies;
 }
 
 // Fonction qui gère l'affichage des 4 catégories
