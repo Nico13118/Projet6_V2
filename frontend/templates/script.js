@@ -8,7 +8,7 @@ let scrollNextPrev4 = 0;
 showBestMovie();
 
  //Affichage du meilleur film
-async function showBestMovie() {
+function showBestMovie() {
     document.addEventListener('DOMContentLoaded', async () => {
         let movieNumber1Area = document.getElementById('movieNumber1Area');
             cat = "0";
