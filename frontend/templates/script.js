@@ -99,14 +99,14 @@ async function showMovieAllCategory() {
 }
 
 // Fonction qui affiche le fenêtre modale contenant les informations d'un film
-function showMovie(urlSingleMovie, cat) {
+async function showMovie(urlSingleMovie, cat) {
     let modal = document.getElementById("myModal");
         overlay = document.querySelector(".overlay");
     modal.classList.remove("hidden");
 	overlay.classList.remove("hidden");
     centerModal(cat);  // Fonction qui permet le positionnement de la fenêtre modal selon la catégorie choisie
 
-    fetch(urlSingleMovie)
+    await fetch(urlSingleMovie)
     .then(response => response.json())
     .then( movie => {
         let infoRated = movie.rated;
