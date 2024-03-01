@@ -47,13 +47,64 @@ function showBestMovie() {
     });
 }
 
+// Fonction qui gère la récupération et l'affichage des 4 catégories
+async function showMovieAllCategory() {
+    let i = 1;
+
+    const nbrPages = [1, 2, 3];
+    while (i <= 4) {
+        let cat = i.toString();
+            idMoviesDetails = 'moviesDetails' + cat;
+            classCarousel = '.carousel' + cat;
+            classtNext = '.next' + cat;
+            classPrev = '.prev' + cat;
+            classPageTitle = '.page_title' + cat;
+            classCategory = '.category' + cat;
+            selectIdMoviesDetails = document.getElementById(idMoviesDetails);
+            selectNext = document.querySelector(classtNext);
+            selectPrev = document.querySelector(classPrev);
+            selectPageTitle = document.querySelector(classPageTitle);
+            movieCounter = 0;
+            nbrMovies = 0;
+
+        selectPrev.style.display = 'flex'; // Permet d'activer l'affichage du bouton prev
+        selectNext.style.display = 'flex'; // Permet d'activer l'affichage du bouton next
+        selectPageTitle.style.display = 'flex'; // Permet d'afficher le titre de la catégorie
+
+        for (let nbrPage of nbrPages) {
+            let urlPage = selectUrl(cat, nbrPage);
+            let movies = await getFetch(urlPage);
+
+            movies.forEach(movie => {
+                movieCounter++;
+                let movieInfo = document.createElement('div');
+                movieInfo.innerHTML = `
+                    <a href="javascript:void(0);">
+                    <img class="${classCategory}" src="${movie.image_url}" alt="${movie.title}" onclick="showMovie('${movie.url}', '${cat}')" style="width: 230px";>
+                    </a>
+                `;
+                selectIdMoviesDetails.appendChild(movieInfo);
+                nbrMovies = movies.length * nbrPages.length
+                if (movieCounter === nbrMovies) {
+                    i++;
+                }
+            });
+        }
+    }
+    let scrollNextPrev = selectIdMoviesDetails.clientWidth; // Variable global
+        scrollNextPrev1 = scrollNextPrev; // Variable global
+        scrollNextPrev2 = scrollNextPrev; // Variable global
+        scrollNextPrev3 = scrollNextPrev; // Variable global
+        scrollNextPrev4 = scrollNextPrev; // Variable global
+}
+
 // Fonction qui affiche le fenêtre modale contenant les informations d'un film
 function showMovie(urlSingleMovie, cat) {
     let modal = document.getElementById("myModal");
         overlay = document.querySelector(".overlay");
     modal.classList.remove("hidden");
 	overlay.classList.remove("hidden");
-    centerModal(cat);
+    centerModal(cat);  // Fonction qui permet le positionnement de la fenêtre modal selon la catégorie choisie
 
     fetch(urlSingleMovie)
     .then(response => response.json())
@@ -170,14 +221,14 @@ function showMovie(urlSingleMovie, cat) {
             </div>
         `;
         modal.appendChild(movieInfo)
-        configureRankingIcon(typeOfClassification);
+        configureRankingIcon(typeOfClassification); // Fonction qui configure le pictogramme selon le classement du film
     });
 }
 
 // Fonction qui ferme la fenêtre modale et supprime toutes les balises div
 function closeBtn() {
-    let modal = document.getElementById("myModal");
-        deleteDiv = modal.querySelectorAll("div");
+    let modal = document.getElementById("myModal");  // récupération de l'élément sous l'id myModal
+        deleteDiv = modal.querySelectorAll("div");  // Selection de toutes les balises div
         overlay = document.querySelector(".overlay");
     modal.classList.add("hidden");
     overlay.classList.add("hidden");
@@ -220,56 +271,7 @@ async function getFetch(urlPage) {
     return movies;
 }
 
-// Fonction qui gère l'affichage des 4 catégories
-async function showMovieAllCategory() {
-    let i = 1;
 
-    const nbrPages = [1, 2, 3];
-    while (i <= 4) {
-        let cat = i.toString();
-            idMoviesDetails = 'moviesDetails' + cat;
-            classCarousel = '.carousel' + cat;
-            classtNext = '.next' + cat;
-            classPrev = '.prev' + cat;
-            classPageTitle = '.page_title' + cat;
-            classCategory = '.category' + cat;
-            selectIdMoviesDetails = document.getElementById(idMoviesDetails);
-            selectNext = document.querySelector(classtNext);
-            selectPrev = document.querySelector(classPrev);
-            selectPageTitle = document.querySelector(classPageTitle);
-            movieCounter = 0;
-            nbrMovies = 0;
-
-        selectPrev.style.display = 'flex'; // Permet d'activer l'affichage du bouton prev
-        selectNext.style.display = 'flex'; // Permet d'activer l'affichage du bouton next
-        selectPageTitle.style.display = 'flex'; // Permet d'afficher le titre de la catégorie
-
-        for (let nbrPage of nbrPages) {
-            let urlPage = selectUrl(cat, nbrPage);
-            let movies = await getFetch(urlPage);
-
-            movies.forEach(movie => {
-                movieCounter++;
-                let movieInfo = document.createElement('div');
-                movieInfo.innerHTML = `
-                    <a href="javascript:void(0);">
-                    <img class="${classCategory}" src="${movie.image_url}" alt="${movie.title}" onclick="showMovie('${movie.url}', '${cat}')" style="width: 230px";>
-                    </a>
-                `;
-                selectIdMoviesDetails.appendChild(movieInfo);
-                nbrMovies = movies.length * nbrPages.length
-                if (movieCounter === nbrMovies) {
-                    i++;
-                }
-            });
-        }
-    }
-    let scrollNextPrev = selectIdMoviesDetails.clientWidth; // Variable global
-        scrollNextPrev1 = scrollNextPrev; // Variable global
-        scrollNextPrev2 = scrollNextPrev; // Variable global
-        scrollNextPrev3 = scrollNextPrev; // Variable global
-        scrollNextPrev4 = scrollNextPrev; // Variable global
-}
 
 function getNextPrev(classNextPrev, moviesDetails, classCarousel) {
     let selectIdMoviesDetails = document.getElementById(moviesDetails);
