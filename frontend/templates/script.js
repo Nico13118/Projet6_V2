@@ -98,13 +98,41 @@ async function showMovieAllCategory() {
         scrollNextPrev4 = scrollNextPrev; // Variable global
 }
 
-// Fonction qui affiche le fenêtre modale contenant les informations d'un film
+// Fonction qui permet de selectionner l'url selon la catégorie demandée
+// Romance, Biography, Crime, Drama, History, Adventure, Fantasy, War, Mystery, Horror, Western, Comedy, Family
+// Action, Sci-Fi, Thriller, Sport, Animation, Musical, Music, Film-Noir, Adult, Documentary, Reality-TV, News
+function selectUrl(cat, nbrPage) {
+    let urlPage = "";
+    let categoryName = "";
+    const listCategory = ["War", "Adventure", "Horror"];
+    if (cat === "1") {
+        // Exemple urlPage : http://127.0.0.1:8000/api/v1/titles/?page=1&sort_by=-imdb_score%2C-votes
+        urlPage = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage + "&sort_by=-imdb_score%2C-votes";
+        return urlPage;
+    } else {
+        if (cat === "2") {
+            categoryName = listCategory[0];
+    }
+        if (cat === "3") {
+            categoryName = listCategory[1];
+    }
+        if (cat === "4") {
+            categoryName = listCategory[2];
+    }
+    // Exemple urlPage : http://127.0.0.1:8000/api/v1/titles/?genre_contains=War&page=1&sort_by=-year
+    urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=" + categoryName + "&page=" + nbrPage + "&sort_by=-year";
+    return urlPage;
+    }
+}
+
+
+// Fonction qui affiche la fenêtre modale contenant les informations d'un film
 async function showMovie(urlSingleMovie, cat) {
     let modal = document.getElementById("myModal");
         overlay = document.querySelector(".overlay");
-    modal.classList.remove("hidden");
-	overlay.classList.remove("hidden");
-    centerModal(cat);  // Fonction qui permet le positionnement de la fenêtre modal selon la catégorie choisie
+    modal.classList.remove("hidden");  
+	overlay.classList.remove("hidden");  // Suppression de cette class permettant de rendre le voile transparent visible
+    centerModal(cat);  // Fonction qui permet le positionnement de la fenêtre modale selon la catégorie choisie
 
     await fetch(urlSingleMovie)
     .then(response => response.json())
@@ -238,30 +266,7 @@ function closeBtn() {
     });
 }
 
-// Fonction qui permet de selectionner l'url selon la catégorie demandée
-// Romance, Biography, Crime, Drama, History, Adventure, Fantasy, War, Mystery, Horror, Western, Comedy, Family
-// Action, Sci-Fi, Thriller, Sport, Animation, Musical, Music, Film-Noir, Adult, Documentary, Reality-TV, News
-function selectUrl(cat, nbrPage) {
-    let urlPage = "";
-    let categoryName = "";
-    const listCategory = ["War", "Adventure", "Horror"];
-    if (cat === "1") {
-        urlPage = "http://127.0.0.1:8000/api/v1/titles/?page=" + nbrPage + "&sort_by=-imdb_score%2C-votes";
-        return urlPage;
-    } else {
-        if (cat === "2") {
-            categoryName = listCategory[0];
-    }
-        if (cat === "3") {
-            categoryName = listCategory[1];
-    }
-        if (cat === "4") {
-            categoryName = listCategory[2];
-    }
-    urlPage = "http://127.0.0.1:8000/api/v1/titles/?genre_contains=" + categoryName + "&page=" + nbrPage + "&sort_by=-year";
-    return urlPage;
-    }
-}
+
 
 // Fonction qui gère la requête fetch pour les 4 catégories
 async function getFetch(urlPage) {
