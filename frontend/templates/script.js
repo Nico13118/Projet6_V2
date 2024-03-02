@@ -130,7 +130,7 @@ function selectUrl(cat, nbrPage) {
 async function showMovie(urlSingleMovie, cat) {
     let modal = document.getElementById("myModal");
         overlay = document.querySelector(".overlay");
-    modal.classList.remove("hidden");  
+    modal.classList.remove("hidden");   // Suppression de cette class permettant de rendre la fenêtre modale visible
 	overlay.classList.remove("hidden");  // Suppression de cette class permettant de rendre le voile transparent visible
     centerModal(cat);  // Fonction qui permet le positionnement de la fenêtre modale selon la catégorie choisie
 
@@ -352,15 +352,14 @@ function getNextPrev(classNextPrev, moviesDetails, classCarousel) {
 function centerModal(cat) {
     let modal = document.querySelector('.modal');
     modal.style.top = "";
-    modal.style.bottom = "";
     if (cat === "0") {
-        modal.style.top = '40%';
+        modal.style.top = '10%';
     } else if (cat === "1") {
-        modal.style.top = '130%';
+        modal.style.top = '35%';
     } else if (cat === "2") {
-        modal.style.top = '160%';
+        modal.style.top = '45%';
     } else if (cat === "3" || cat === "4") {
-        modal.style.bottom = '-180%';
+        modal.style.top = '65%';
     }
 }
 
