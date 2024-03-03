@@ -141,7 +141,6 @@ async function showMovie(urlSingleMovie, cat) {
             infoUsaGrossIncome = movie.usa_gross_income;
             infoWorldwildGrossIncome = movie.worldwide_gross_income;
             typeOfClassification = "age";
-
         if ((infoRated <= 7) || infoRated === "G") {
             infoRated = "TOUS PUBLICS"
             typeOfClassification = "other";
@@ -175,25 +174,20 @@ async function showMovie(urlSingleMovie, cat) {
             infoWorldwildGrossIncome = infoWorldwildGrossIncome + " $ US"
         }
 
-
         let movieInfo = document.createElement('div');
             movieInfo.innerHTML = `
             <div class="container1">
-
                 <div class="R1">
                     <img class="single_image2" src="${movie.image_url}" alt="${movie.title}">
                 </div>
-
                 <div class="R2">
                     <div class="modal-content R3">
                         <span class="close" id="closeModal" onclick="closeBtn()">&times;</span>
                     </div>
-
                     <div class="R4">
                         <h1 class="movie_title2">${movie.original_title}</h1>
                         <p class="description2">${movie.long_description}</p>
                     </div>
-
                     <div class="R5N1">
                         <div class="imdb_score">
                             <span>IMDb : ${movie.imdb_score}</span>
@@ -208,13 +202,11 @@ async function showMovie(urlSingleMovie, cat) {
                             <span class="rated">${infoRated}</span>
                         </div>
                     </div>
-
                     <div class="R5N2">
                         <div class="genres">
                             <span>Genres : ${movie.genres}</span>
                         </div>
                     </div>
-
                     <div class="R6">
                         <div class="directors">
                             <span>Réalisateur : ${movie.directors}</span>
@@ -223,7 +215,6 @@ async function showMovie(urlSingleMovie, cat) {
                             <span>Liste des acteurs : ${movie.actors}</span>
                         </div>
                     </div>
-
                     <div class="R7">
                         <div class="countries">
                             <span>Pays : ${movie.countries}</span>
@@ -235,7 +226,6 @@ async function showMovie(urlSingleMovie, cat) {
                             <span>Box office mondial : ${infoWorldwildGrossIncome}</span>
                         </div>
                     </div>
-
                     <div class="R8">
                         <div class="container_playerMovie2">
                             <a class="playMovie2">Regarder le film</a>
@@ -245,7 +235,6 @@ async function showMovie(urlSingleMovie, cat) {
                         </div>
                     </div>
                 </div>
-
             </div>
         `;
         modal.appendChild(movieInfo)
