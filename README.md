@@ -35,14 +35,20 @@ git clone https://github.com/Nico13118/Projet6_V2.git
    ``` 
 
 ## Création d'un environnement virtuel dans le fichier OCMovies-API-EN-FR-master.
-### Sous Windows, saisir la commande ci-dessous (Cmd ou PowerShell).
+### Sous Windows, saisir les commandes ci-dessous (Cmd ou PowerShell).
 
+```sh
+cd desktop/OCMovies-API-EN-FR
+   ``` 
 ```sh
 python -m venv env
    ``` 
 
-### Sous Mac / Linux, saisir la commande ci-dessous (Terminal)
+### Sous Mac / Linux, saisir les commandes ci-dessous (Terminal)
 
+```sh
+cd ~/Desktop/OCMovies-API-EN-FR   
+   ```
 ```sh
 python3 -m venv env
    ``` 
